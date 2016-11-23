@@ -16,7 +16,7 @@ namespace projet_gestion_centreSportif
         private void CreateConnection() {
             try
             {
-                String connectionString = "server=localhost;uid=admin;pwd=1234;database=centresportif;";
+                String connectionString = "server=localhost;uid=root;pwd='';database=centresportif;";
                 MySqlConnection con = new MySqlConnection(connectionString);
                 setConnection(con);
             }
