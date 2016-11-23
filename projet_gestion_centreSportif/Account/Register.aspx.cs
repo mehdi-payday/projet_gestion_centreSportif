@@ -4,15 +4,15 @@ using System.Web;
 using System.Web.UI;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Owin;
+using System.Web.Security;
 using projet_gestion_centreSportif.Models;
+using projet_gestion_centreSportif.Services;
 
 namespace projet_gestion_centreSportif.Account
 {
     public partial class Register : Page
     {
-        protected void CreateUser_Click(object sender, EventArgs e)
-        {
+        /*protected void CreateUser_Click(object sender, EventArgs e) {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
             var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text };
@@ -30,6 +30,21 @@ namespace projet_gestion_centreSportif.Account
             else 
             {
                 ErrorMessage.Text = result.Errors.FirstOrDefault();
+            }
+        }
+        */
+        protected void CreateUser_Click(object sender, EventArgs e) {
+            User user = new User();
+            user.First_name = First_name.Text;
+            user.Last_name = Last_name.Text;
+            user.Email = Email.Text;
+            user.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(Password.Text, "SHA1");
+            UserService userService = new UserService();
+            if (userService.register(user)) {
+                FormsAuthentication.SetAuthCookie(Email.Text, false);
+                FormsAuthentication.RedirectFromLoginPage(Email.Text, false);
+            } else {
+                ErrorMessage.Text = "Failed to register user, try again!";
             }
         }
     }
