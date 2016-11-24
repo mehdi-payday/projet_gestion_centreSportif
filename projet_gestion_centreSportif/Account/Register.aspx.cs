@@ -34,13 +34,13 @@ namespace projet_gestion_centreSportif.Account
         }
         */
         protected void CreateUser_Click(object sender, EventArgs e) {
-            User user = new User();
-            user.First_name = First_name.Text;
-            user.Last_name = Last_name.Text;
-            user.Email = Email.Text;
-            user.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(Password.Text, "SHA1");
-            UserService userService = new UserService();
-            if (userService.register(user)) {
+            Membre membre = new Membre();
+            membre.Prenom = First_name.Text;
+            membre.Nom = Last_name.Text;
+            membre.Email = Email.Text;
+            membre.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(Password.Text, "SHA1");
+            MembreService membreService = new MembreService();
+            if (membreService.register(membre)) {
                 FormsAuthentication.SetAuthCookie(Email.Text, false);
                 FormsAuthentication.RedirectFromLoginPage(Email.Text, false);
             } else {

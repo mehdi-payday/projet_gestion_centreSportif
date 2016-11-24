@@ -25,12 +25,12 @@ namespace projet_gestion_centreSportif.Account
         }
 
         protected void LogIn(object sender, EventArgs e) {
-            User user = new User();
-            user.Email = Email.Text;
-            user.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(Password.Text, "SHA1");
-            UserService userService = new UserService();
+            Membre membre = new Membre();
+            membre.Email = Email.Text;
+            membre.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(Password.Text, "SHA1");
+            MembreService membreService = new MembreService();
 
-            if (userService.ValidUser(user)) {
+            if (membreService.MembreValid(membre)) {
                 FormsAuthentication.SetAuthCookie(Email.Text, RememberMe.Checked);
                 FormsAuthentication.RedirectFromLoginPage(Email.Text, RememberMe.Checked);
             }

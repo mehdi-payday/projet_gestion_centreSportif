@@ -14,13 +14,11 @@ namespace projet_gestion_centreSportif
             CreateConnection();
         }
         private void CreateConnection() {
-            try
-            {
+            try {
                 String connectionString = "server=localhost;uid=root;pwd='';database=centresportif;";
-                MySqlConnection con = new MySqlConnection(connectionString);
-                setConnection(con);
-            }
-            catch (SQLiteException sqlException) {
+                MySqlConnection connection = new MySqlConnection(connectionString);
+                setConnection(connection);
+            } catch (SQLiteException sqlException) {
                 throw new SQLiteException(sqlException.Message);
             }
         }
