@@ -56,8 +56,8 @@ CREATE TABLE IF NOT EXISTS `inscription` (
 
 CREATE TABLE IF NOT EXISTS `membre` (
   `id` int(11) NOT NULL,
-  `first_name` varchar(20) DEFAULT NULL,
-  `last_name` varchar(20) DEFAULT NULL,
+  `prenom` varchar(20) DEFAULT NULL,
+  `nom` varchar(20) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `isAdmin` int(1) NOT NULL DEFAULT '0'
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `membre` (
 -- Contenu de la table `membre`
 --
 
-INSERT INTO `membre` (`id`, `first_name`, `last_name`, `email`, `password`, `isAdmin`) VALUES
+INSERT INTO `membre` (`id`, `prenom`, `nom`, `email`, `password`, `isAdmin`) VALUES
 (1, 'admin', 'admin', 'admin@site', 'D033E22AE348AEB5660FC2140AEC35850C4DA997', 1);
 
 -- --------------------------------------------------------

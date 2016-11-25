@@ -44,6 +44,7 @@ C:\Users\mehdi\git\projet_gestion_centreSportif\projet_gestion_centreSportif\bin
 C:\Users\mehdi\git\projet_gestion_centreSportif\projet_gestion_centreSportif\bin\Microsoft.ScriptManager.MSAjax.dll
 C:\Users\mehdi\git\projet_gestion_centreSportif\projet_gestion_centreSportif\bin\Microsoft.ScriptManager.WebForms.dll
 C:\Users\mehdi\git\projet_gestion_centreSportif\projet_gestion_centreSportif\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\mehdi\git\projet_gestion_centreSportif\projet_gestion_centreSportif\bin\MySql.Data.dll
 C:\Users\mehdi\git\projet_gestion_centreSportif\projet_gestion_centreSportif\bin\Newtonsoft.Json.dll
 C:\Users\mehdi\git\projet_gestion_centreSportif\projet_gestion_centreSportif\bin\Owin.dll
 C:\Users\mehdi\git\projet_gestion_centreSportif\projet_gestion_centreSportif\bin\System.Data.SQLite.dll
@@ -78,7 +79,5 @@ C:\Users\mehdi\git\projet_gestion_centreSportif\projet_gestion_centreSportif\bin
 C:\Users\mehdi\git\projet_gestion_centreSportif\projet_gestion_centreSportif\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\mehdi\git\projet_gestion_centreSportif\projet_gestion_centreSportif\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\mehdi\git\projet_gestion_centreSportif\projet_gestion_centreSportif\bin\Microsoft.Owin.Security.OAuth.xml
-C:\Users\mehdi\git\projet_gestion_centreSportif\projet_gestion_centreSportif\obj\Debug\projet_gestion_centreSportif.csprojResolveAssemblyReference.cache
 C:\Users\mehdi\git\projet_gestion_centreSportif\projet_gestion_centreSportif\obj\Debug\projet_gestion_centreSportif.dll
 C:\Users\mehdi\git\projet_gestion_centreSportif\projet_gestion_centreSportif\obj\Debug\projet_gestion_centreSportif.pdb
-C:\Users\mehdi\git\projet_gestion_centreSportif\projet_gestion_centreSportif\bin\MySql.Data.dll

@@ -22,6 +22,12 @@ namespace projet_gestion_centreSportif
                 throw new SQLiteException(sqlException.Message);
             }
         }
+        public void Open() {
+            getConnection().Open();
+        }
+        public void Close() {
+            getConnection().Close();
+        }
         public void setConnection(MySqlConnection connection) {
             this.connection = connection;
         }
