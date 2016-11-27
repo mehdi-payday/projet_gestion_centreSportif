@@ -36,3 +36,27 @@ input[type="select"] {
         padding: 0;
     }
 }
+
+.thumbnail-title {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.liste-membres {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.carte-membre {
+    overflow: hidden;
+    background-color: rgb(239, 239, 239);
+    display: inline-block;
+    box-sizing: border-box;
+    width: 275px;
+    padding: 0px 20px 0px 20px;
+    margin: 2px;
+}
+
+.activite-table {
+    margin-top: 20px;
+}

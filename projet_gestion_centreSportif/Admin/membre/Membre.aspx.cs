@@ -10,11 +10,15 @@ namespace projet_gestion_centreSportif.Admin.membre {
 
         protected void Page_Load(object sender, EventArgs e) {
             membreService = new MembreService();
-            this.membres = getMembers();
+            this.membres = getMembres();
         }
 
-        private List<Models.Membre> getMembers() {
+        private List<Models.Membre> getMembres() {
             return this.membreService.GetAll();
+        }
+
+        private Models.Membre getMembre(int idMembre) {
+            return this.membreService.Read(idMembre);
         }
     }
 }

@@ -1,14 +1,24 @@
-﻿using System;
+﻿using projet_gestion_centreSportif.Services;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace projet_gestion_centreSportif.Admin.activite {
     public partial class WebForm1 : System.Web.UI.Page {
-        protected void Page_Load(object sender, EventArgs e) {
 
+        ActiviteService activiteService;
+        protected List<Models.Activite> activites;
+
+        protected void Page_Load(object sender, EventArgs e) {
+            activiteService = new ActiviteService();
+            activites = getActivites();
+        }
+
+        private List<Models.Activite> getActivites() {
+            return this.activiteService.GetAll();
+        }
+
+        private Models.Activite getMembre(int idActivite) {
+            return this.activiteService.Read(idActivite);
         }
     }
 }
