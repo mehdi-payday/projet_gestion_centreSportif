@@ -32,8 +32,8 @@ namespace projet_gestion_centreSportif.Account
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             CanRemoveExternalLogins = manager.GetLogins(User.Identity.GetUserId()).Count() > 1;
 
-            SuccessMessage = String.Empty;
-            successMessage.Visible = !String.IsNullOrEmpty(SuccessMessage);
+            SuccessMessage = string.Empty;
+            successMessage.Visible = !string.IsNullOrEmpty(SuccessMessage);
         }
 
         public IEnumerable<UserLoginInfo> GetLogins()
@@ -49,7 +49,7 @@ namespace projet_gestion_centreSportif.Account
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
             var result = manager.RemoveLogin(User.Identity.GetUserId(), new UserLoginInfo(loginProvider, providerKey));
-            string msg = String.Empty;
+            string msg = string.Empty;
             if (result.Succeeded)
             {
                 var user = manager.FindById(User.Identity.GetUserId());

@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using projet_gestion_centreSportif.Models;
 using MySql.Data.MySqlClient;
 
 namespace projet_gestion_centreSportif.Services {
     public class ActiviteService {
 
-        Connection connexion = new Connection();
+        Connection connexion;
         private static readonly string INSERT_ACTIVITE_QUERY = "INSERT INTO activite(`nom`, `prix`, `description`, `duree`) VALUES(@nom, @prix, @description, @duree)";
         private static readonly string READ_ACTIVITE_QUERY = "SELECT `idActivite`, `nom`, `prix`, `description`, `duree` FROM activite WHERE `idActivite` = @idActivite";
         private static readonly string UPDATE_ACTIVITE_QUERY = "UPDATE activite SET `nom` = @nom, `prix` = @prix, `description` = @description, `duree` = @duree WHERE `idActivite` = @idActivite";
         private static readonly string DELETE_ACTIVITE_QUERY = "DELETE FROM activite WHERE `idActivite` = @idActivite";
         private static readonly string GET_ALL_ACTIVITE_QUERY = "SELECT `idActivite`, `nom`, `prix`, `description`, `duree` FROM activite";
 
+        public ActiviteService() {
+            connexion = new Connection();
+        }
 
         /// <summary>
         /// Fait un Insert dans la BD sur la table Activite
@@ -45,7 +46,7 @@ namespace projet_gestion_centreSportif.Services {
         /// </summary>
         /// <param name="idActivite">l'id de l'activite que l'on veut read</param>
         /// <returns>une Activite; null sinon</returns>
-        public Activite Read(String idActivite) {
+        public Activite Read(string idActivite) {
             Activite activiteModel = null;
             try {
                 using (MySqlConnection connection = connexion.getConnection()) {

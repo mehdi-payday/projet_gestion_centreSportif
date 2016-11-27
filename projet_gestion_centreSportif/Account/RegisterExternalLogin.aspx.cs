@@ -12,13 +12,13 @@ namespace projet_gestion_centreSportif.Account
     {
         protected string ProviderName
         {
-            get { return (string)ViewState["ProviderName"] ?? String.Empty; }
+            get { return (string)ViewState["ProviderName"] ?? string.Empty; }
             private set { ViewState["ProviderName"] = value; }
         }
 
         protected string ProviderAccountKey
         {
-            get { return (string)ViewState["ProviderAccountKey"] ?? String.Empty; }
+            get { return (string)ViewState["ProviderAccountKey"] ?? string.Empty; }
             private set { ViewState["ProviderAccountKey"] = value; }
         }
 
@@ -31,7 +31,7 @@ namespace projet_gestion_centreSportif.Account
         {
             // Process the result from an auth provider in the request
             ProviderName = IdentityHelper.GetProviderNameFromRequest(Request);
-            if (String.IsNullOrEmpty(ProviderName))
+            if (string.IsNullOrEmpty(ProviderName))
             {
                 RedirectOnFail();
                 return;

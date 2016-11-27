@@ -46,11 +46,14 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">Application name</a>
+                    <a class="navbar-brand" runat="server" href="~/"><span class="glyphicon glyphicon-globe" id="logIcon"></span>  Centre Sportif</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Home</a></li>
+                        <li><a runat="server" href="~/Admin/activite/Activite">Admin-Activite</a></li>
+                        <li><a runat="server" href="~/Admin/membre/Membre">Admin-Membre</a></li>
+                        <li><a runat="server" href="~/Partiels/Activite">Activite</a></li>
                         <li><a runat="server" href="~/About">About</a></li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>
                     </ul>
@@ -78,7 +81,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+                <p>&copy; <%: DateTime.Now.Year %> - Centre Sportif</p>
             </footer>
         </div>
     </form>

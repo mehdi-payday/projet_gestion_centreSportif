@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Client :  127.0.0.1
--- Généré le :  Mer 23 Novembre 2016 à 19:51
--- Version du serveur :  5.6.21
--- Version de PHP :  5.6.3
+-- Host: 127.0.0.1
+-- Generation Time: Nov 27, 2016 at 07:27 PM
+-- Server version: 10.1.10-MariaDB
+-- PHP Version: 5.6.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,20 +14,20 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `centresportif`
+-- Database: `centresportif`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `activite`
+-- Table structure for table `activite`
 --
 
-CREATE TABLE IF NOT EXISTS `activite` (
-`id` int(11) NOT NULL,
+CREATE TABLE `activite` (
+  `id` int(11) NOT NULL,
   `nom` varchar(50) NOT NULL,
   `description` varchar(255) NOT NULL,
   `prix` double NOT NULL,
@@ -37,11 +37,11 @@ CREATE TABLE IF NOT EXISTS `activite` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `inscription`
+-- Table structure for table `inscription`
 --
 
-CREATE TABLE IF NOT EXISTS `inscription` (
-  `id` int(11) DEFAULT NULL,
+CREATE TABLE `inscription` (
+  `id` int(11) NOT NULL,
   `idMembre` int(11) NOT NULL,
   `idActivite` int(11) NOT NULL,
   `date_debut` date NOT NULL,
@@ -51,10 +51,10 @@ CREATE TABLE IF NOT EXISTS `inscription` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `membre`
+-- Table structure for table `membre`
 --
 
-CREATE TABLE IF NOT EXISTS `membre` (
+CREATE TABLE `membre` (
   `id` int(11) NOT NULL,
   `prenom` varchar(20) DEFAULT NULL,
   `nom` varchar(20) DEFAULT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `membre` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `membre`
+-- Dumping data for table `membre`
 --
 
 INSERT INTO `membre` (`id`, `prenom`, `nom`, `email`, `password`, `isAdmin`) VALUES
@@ -73,68 +73,86 @@ INSERT INTO `membre` (`id`, `prenom`, `nom`, `email`, `password`, `isAdmin`) VAL
 -- --------------------------------------------------------
 
 --
--- Structure de la table `visite`
+-- Table structure for table `visite`
 --
 
-CREATE TABLE IF NOT EXISTS `visite` (
-  `id` int(11) DEFAULT NULL,
+CREATE TABLE `visite` (
+  `id` int(11) NOT NULL,
   `idMembre` int(11) NOT NULL,
   `DATE` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Index pour les tables exportées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `activite`
+-- Indexes for table `activite`
 --
 ALTER TABLE `activite`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `inscription`
+-- Indexes for table `inscription`
 --
 ALTER TABLE `inscription`
- ADD KEY `idMembre` (`idMembre`), ADD KEY `idActivite` (`idActivite`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idMembre` (`idMembre`),
+  ADD KEY `idActivite` (`idActivite`);
 
 --
--- Index pour la table `membre`
+-- Indexes for table `membre`
 --
 ALTER TABLE `membre`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `visite`
+-- Indexes for table `visite`
 --
 ALTER TABLE `visite`
- ADD KEY `idMembre` (`idMembre`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idMembre` (`idMembre`);
 
 --
--- AUTO_INCREMENT pour les tables exportées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `activite`
+-- AUTO_INCREMENT for table `activite`
 --
 ALTER TABLE `activite`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- Contraintes pour les tables exportées
---
-
---
--- Contraintes pour la table `inscription`
+-- AUTO_INCREMENT for table `inscription`
 --
 ALTER TABLE `inscription`
-ADD CONSTRAINT `inscription_ibfk_1` FOREIGN KEY (`idMembre`) REFERENCES `membre` (`id`),
-ADD CONSTRAINT `inscription_ibfk_2` FOREIGN KEY (`idActivite`) REFERENCES `activite` (`id`);
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- Contraintes pour la table `visite`
+-- AUTO_INCREMENT for table `membre`
+--
+ALTER TABLE `membre`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `visite`
 --
 ALTER TABLE `visite`
-ADD CONSTRAINT `visite_ibfk_1` FOREIGN KEY (`idMembre`) REFERENCES `membre` (`id`);
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `inscription`
+--
+ALTER TABLE `inscription`
+  ADD CONSTRAINT `inscription_ibfk_1` FOREIGN KEY (`idMembre`) REFERENCES `membre` (`id`),
+  ADD CONSTRAINT `inscription_ibfk_2` FOREIGN KEY (`idActivite`) REFERENCES `activite` (`id`);
+
+--
+-- Constraints for table `visite`
+--
+ALTER TABLE `visite`
+  ADD CONSTRAINT `visite_ibfk_1` FOREIGN KEY (`idMembre`) REFERENCES `membre` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

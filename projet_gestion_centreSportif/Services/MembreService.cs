@@ -153,8 +153,8 @@ namespace projet_gestion_centreSportif.Services {
         /// Retourne la liste de tous les membres.
         /// </summary>
         /// <returns>La liste de toute les membres; une liste vide sinon</returns>
-        public List<Membre> GetALl() {
-            List<Membre> membres = null;
+        public List<Membre> GetAll() {
+            List<Membre> membres = new List<Membre>();
             try {
                 connexion.Open();
                 using (MySqlCommand command = new MySqlCommand(MembreService.GET_ALL_MEMRE_QUERY, connexion.getConnection())) {
