@@ -111,7 +111,7 @@ namespace projet_gestion_centreSportif.Services {
         /// <summary>
         /// Fait un Find by Membre dans la BD sur la table Inscription
         /// </summary>
-        /// <param name="idInscription">l'id de l'inscription que l'on veut read</param>
+        /// <param name="idMembre">l'id du membre que l'on veut read</param>
         /// <returns>une Inscription; null sinon</returns>
         public Inscription FindByMembre(int idMembre) {
             Inscription inscriptionModel = null;
