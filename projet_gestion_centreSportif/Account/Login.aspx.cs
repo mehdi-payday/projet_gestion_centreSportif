@@ -30,15 +30,32 @@ namespace projet_gestion_centreSportif.Account
             membre.Email = Email.Text;
             membre.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(Password.Text, "SHA1");
             MembreService membreService = new MembreService();
-
-            if (membreService.MembreValid(membre)) {
-                FormsAuthentication.SetAuthCookie(Email.Text, RememberMe.Checked);
-                FormsAuthentication.RedirectFromLoginPage(Email.Text, RememberMe.Checked);
+            membre = membreService.MembreValid(membre);
+            if (membre != null) {
+                string [] roles = new string[2] { "normal",null};
+                if (membre.IsAdmin == 1) {
+                    roles[1] = "admin";
+                }
+                CreateTicket(membre.Nom, roles);
+                HttpContext.Current.Response.Redirect("~/default.aspx");
             } else {
                 FailureText.Text = "Wrong email/password, please try again!";
                 FailureText.Visible = true;
             }
+        }
+        private void CreateTicket(string name, string[] roles) {
+            var ticket = new FormsAuthenticationTicket(
+                    version: 1,
+                    name: name,
+                    issueDate: DateTime.Now,
+                    expiration: DateTime.Now.AddMinutes(30),
+                    isPersistent: false,
+                    userData: String.Join("|", roles));
 
+            var encryptedTicket = FormsAuthentication.Encrypt(ticket);
+            var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+
+            HttpContext.Current.Response.Cookies.Add(cookie);
         }
     }
 }

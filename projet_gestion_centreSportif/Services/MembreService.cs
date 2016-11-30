@@ -49,9 +49,9 @@ namespace projet_gestion_centreSportif.Services {
         /// Verifier si la combinaison de mot de passe et email est valide
         /// </summary>
         /// <param name="membre">le membre a verifier</param>
-        /// <returns>true ou false</returns>
-        public Boolean MembreValid(Membre membre) {
-            Boolean valid = false;
+        /// <returns>un membre; null sinon</returns>
+        public Membre MembreValid(Membre membre) {
+            Membre unMembre= null;
             try {
                 connexion.Open();
                 using (MySqlCommand command = new MySqlCommand(MembreService.LOGIN_MEMBRE_QUERY, connexion.getConnection())) {
@@ -59,9 +59,15 @@ namespace projet_gestion_centreSportif.Services {
 
                     command.Parameters.AddWithValue("email", membre.Email);
                     command.Parameters.AddWithValue("password", membre.Password);
-
-                    if (command.ExecuteScalar() != null && (int)command.ExecuteScalar() == 1) {
-                        valid = true;
+                    using (MySqlDataReader reader = command.ExecuteReader()) {
+                        if (reader.Read()) {
+                            unMembre = new Membre();
+                            unMembre.Id = reader.GetString("id");
+                            unMembre.Prenom = reader.GetString("prenom");
+                            unMembre.Nom = reader.GetString("nom");
+                            unMembre.Password = reader.GetString("password");
+                            unMembre.IsAdmin = reader.GetInt16("isAdmin");
+                        }
                     }
                 }
                 connexion.Close();
@@ -69,7 +75,7 @@ namespace projet_gestion_centreSportif.Services {
                 Console.WriteLine(mysqlException.Message);
             }
 
-            return valid;
+            return unMembre;
         }
 
         /// <summary>
@@ -87,7 +93,7 @@ namespace projet_gestion_centreSportif.Services {
                     using (MySqlDataReader reader = command.ExecuteReader()) {
                         if (reader.Read()) {
                             membre = new Membre();
-                            membre.Id = reader.GetInt16("id");
+                            membre.Id = reader.GetString("id");
                             membre.Prenom = reader.GetString("prenom");
                             membre.Nom = reader.GetString("nom");
                             membre.Password = reader.GetString("password");
@@ -161,7 +167,7 @@ namespace projet_gestion_centreSportif.Services {
                     MySqlDataReader reader = command.ExecuteReader();
                     while (reader.Read()) {
                         Membre membre = new Membre();
-                        membre.Id = reader.GetInt16("id");
+                        membre.Id = reader.GetString("id");
                         membre.Prenom = reader.GetString("prenom");
                         membre.Nom = reader.GetString("nom");
                         membre.Email = reader.GetString("Email");

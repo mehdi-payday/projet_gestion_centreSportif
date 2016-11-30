@@ -216,6 +216,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Admin\Web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Partiels\Activite.aspx" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
