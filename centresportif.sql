@@ -67,8 +67,8 @@ CREATE TABLE `membre` (
 -- Dumping data for table `membre`
 --
 
-INSERT INTO `membre` (`id`, `prenom`, `nom`, `email`, `password`, `isAdmin`) VALUES
-(1, 'admin', 'admin', 'admin@site', 'D033E22AE348AEB5660FC2140AEC35850C4DA997', 1);
+INSERT INTO `membre` (`prenom`, `nom`, `email`, `password`, `isAdmin`) VALUES
+('admin', 'admin', 'admin@site', 'D033E22AE348AEB5660FC2140AEC35850C4DA997', 1);
 
 -- --------------------------------------------------------
 
@@ -131,7 +131,7 @@ ALTER TABLE `inscription`
 -- AUTO_INCREMENT for table `membre`
 --
 ALTER TABLE `membre`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `visite`
 --
