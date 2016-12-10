@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="About" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="projet_gestion_centreSportif.About" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%: Title %>.</h2>
-    <h3>Your application description page.</h3>
+    <h2><%: Title %></h2>
+    <h3>À propos de nous</h3>
     <p style="text-align: justify;">
         Centre Sportif est un établissement multidiciplinaire dédié entièrement 
         à la pratique d'activité physique où se retrouvent chaque année des athlètes de tous les calibres. 
