@@ -9,6 +9,7 @@ body {
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    max-width: 1170px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -59,4 +60,14 @@ input[type="select"] {
 
 .activite-table {
     margin-top: 20px;
+}
+
+.max-width {
+    max-width: 100%!important;
+}
+
+.banner {
+    background: url(sports-banner.jpg) no-repeat center top;
+    background-size: cover;
+    height: 400px;
 }

@@ -79,13 +79,18 @@
                 </div>
             </div>
         </div>
-        <div class="container body-content">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Centre Sportif</p>
-            </footer>
+        <div class="max-width">
+            <div class="banner">
+
+            </div>
+            <div class="container body-content">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+                <hr />
+                <footer>
+                    <p>&copy; <%: DateTime.Now.Year %> - Centre Sportif</p>
+                </footer>
+            </div>
         </div>
     </form>
 </body>

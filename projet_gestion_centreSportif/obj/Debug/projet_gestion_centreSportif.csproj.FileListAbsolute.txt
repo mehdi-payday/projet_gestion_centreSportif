@@ -1,4 +1,3 @@
-C:\Users\Xblade45\Documents\centresportif\projet_gestion_centreSportif\obj\Debug\projet_gestion_centreSportif.csprojResolveAssemblyReference.cache
 C:\Users\Xblade45\Documents\centresportif\projet_gestion_centreSportif\bin\ApplicationInsights.config
 C:\Users\Xblade45\Documents\centresportif\projet_gestion_centreSportif\bin\roslyn\csc.exe
 C:\Users\Xblade45\Documents\centresportif\projet_gestion_centreSportif\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
