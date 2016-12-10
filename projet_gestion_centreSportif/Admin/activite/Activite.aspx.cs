@@ -9,9 +9,10 @@ namespace projet_gestion_centreSportif.Admin.activite {
         ActiviteService activiteService;
 
         protected void Page_Load(object sender, EventArgs e) {
-            activiteService = new ActiviteService();
-            activites.DataSource = getActivites();
-            activites.DataBind();
+            //TODO remove or use this for the gridView, don't know how yet
+            //activiteService = new ActiviteService();
+            //activites.DataSource = getActivites();
+            //activites.DataBind();
         }
 
         private DataSet getActivites() {

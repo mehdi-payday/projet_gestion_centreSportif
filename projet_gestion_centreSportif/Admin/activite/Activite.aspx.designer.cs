@@ -20,5 +20,14 @@ namespace projet_gestion_centreSportif.Admin.activite {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView activites;
+        
+        /// <summary>
+        /// MySQL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource MySQL;
     }
 }
