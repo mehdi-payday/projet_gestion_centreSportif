@@ -1,19 +1,20 @@
 ﻿using projet_gestion_centreSportif.Services;
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace projet_gestion_centreSportif.Admin.activite {
     public partial class WebForm1 : System.Web.UI.Page {
 
         ActiviteService activiteService;
-        protected List<Models.Activite> activites;
 
         protected void Page_Load(object sender, EventArgs e) {
             activiteService = new ActiviteService();
-            activites = getActivites();
+            activites.DataSource = getActivites();
+            activites.DataBind();
         }
 
-        private List<Models.Activite> getActivites() {
+        private DataSet getActivites() {
             return this.activiteService.GetAll();
         }
 

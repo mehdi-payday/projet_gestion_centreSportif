@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using projet_gestion_centreSportif.Models;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace projet_gestion_centreSportif.Services {
     public class ActiviteService {
@@ -123,33 +124,22 @@ namespace projet_gestion_centreSportif.Services {
         /// Retourne la liste de toutes les activite de la table Activite
         /// </summary>
         /// <returns>La liste de toutes les activite; une liste vide sinon</returns>
-        public List<Activite> GetAll() {
-            List<Activite> activites = new List<Activite>();
+        public DataSet GetAll() {
+            DataSet dataset = null;
             try {
                 using (MySqlConnection connection = connexion.getConnection()) {
                     connection.Open();
                     using (MySqlCommand command = new MySqlCommand(ActiviteService.GET_ALL_ACTIVITE_QUERY, connection)) {
-                        command.Prepare();
-                        using (MySqlDataReader reader = command.ExecuteReader()) {
-                            while (reader.Read()) {
-                                Activite activiteModel = new Activite();
-                                activiteModel.id = reader.GetString("id");
-                                activiteModel.Nom = reader.GetString("nom");
-                                activiteModel.Prix = reader.GetString("prix");
-                                activiteModel.Description = reader.GetString("description");
-                                activiteModel.Duree = reader.GetString("duree");
-                                activites.Add(activiteModel);
-                            }
-                        }
+                        MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                        dataset = new DataSet();
+                        adapter.Fill(dataset);
                     }
                 }
             }
             catch (MySqlException exception) {
                 // TODO
             }
-            return activites;
+            return dataset;
         }
-
-
     }
 }
