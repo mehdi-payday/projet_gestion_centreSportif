@@ -220,6 +220,8 @@
     <Content Include="Admin\Web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Partiels\Activite.aspx" />
+    <Content Include="Partiels\Checkout.aspx" />
+    <Content Include="Partiels\Panier.aspx" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -429,6 +431,20 @@
     </Compile>
     <Compile Include="Partiels\Activite.aspx.designer.cs">
       <DependentUpon>Activite.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Partiels\Checkout.aspx.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Partiels\Checkout.aspx.designer.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Partiels\Panier.aspx.cs">
+      <DependentUpon>Panier.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Partiels\Panier.aspx.designer.cs">
+      <DependentUpon>Panier.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ActiviteService.cs" />

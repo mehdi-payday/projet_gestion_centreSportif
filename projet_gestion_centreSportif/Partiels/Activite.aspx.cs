@@ -12,6 +12,18 @@ namespace projet_gestion_centreSportif.Partiels {
     public partial class Activite : System.Web.UI.Page {
 
         protected void Page_Load(object sender, EventArgs e) {
+            var msg = Session["errorMsg"];
+            if(msg != null) {
+                Session["errorMsg"] = null;
+                error.Text = msg.ToString();
+                errorPanel.Visible = true;
+            }
+            msg = Session["activiteAdded"];
+            if(msg != null) {
+                Session["activiteAdded"] = null;
+                activiteAddedLabel.Text = msg.ToString();
+                activiteAddedPanel.Visible = true;
+            }
             if (!IsPostBack && Request.IsAuthenticated) {
                 if (HttpContext.Current.Session["userID"] == null) {
                     FormsAuthentication.SignOut();
@@ -48,15 +60,19 @@ namespace projet_gestion_centreSportif.Partiels {
                 }
                 if (!dejaAjoute) {
                     panier.Add(new ActiviteService().Read(idActivite));
+                    Session.Add("activiteAdded", panier[panier.Count-1].Nom);
                 }
                 else {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "errMessage1", "alert(\"Vous êtes déjà inscrit à cette activité\");", true);
+                    //ScriptManager.RegisterStartupScript(this, this.GetType(), "errMessage1", "alert(\"Vous êtes déjà inscrit à cette activité\");", true);
+                    Session.Add("errorMsg", "Vous êtes déjà inscrit à cette activité");
                 }
             }
             else {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "errMessage2", "alert(\"Vous avez déjà l'activité dans votre panier\");", true);
+                //ScriptManager.RegisterStartupScript(this, this.GetType(), "errMessage2", "alert(\"Vous avez déjà l'activité dans votre panier\");", true);
+                Session.Add("errorMsg", "Vous avez déjà l'activité dans votre panier");
             }
             HttpContext.Current.Session["panier"]=panier;
+            Server.TransferRequest(Request.Url.AbsolutePath, false);
         }
 
     }

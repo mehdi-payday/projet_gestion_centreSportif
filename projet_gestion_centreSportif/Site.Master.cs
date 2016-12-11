@@ -69,7 +69,10 @@ namespace projet_gestion_centreSportif
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            List<Models.Activite> list = (List<Models.Activite>)HttpContext.Current.Session["panier"];
+            if (list != null) {
+                ViewState.Add("panierCount", list.Count);
+            }
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)

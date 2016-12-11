@@ -2,6 +2,18 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
         <h2>Activite</h2>
+        <asp:Panel ID="errorPanel" runat="server" visible="false">
+            <div class="alert alert-danger alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Erreur!</strong> <asp:Label runat="server" ID="error"></asp:Label>
+            </div>
+        </asp:Panel>
+        <asp:Panel ID="activiteAddedPanel" runat="server" visible="false">
+            <div class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Super!</strong> Vous venez d'ajouter <asp:Label runat="server" ID="activiteAddedLabel"></asp:Label> a votre panier
+            </div>
+        </asp:Panel>
         <asp:LoginView runat="server" ViewStateMode="Disabled">
             <AnonymousTemplate>
                 <p>Notre centre offre aux membres les activités suivantes :</p>
