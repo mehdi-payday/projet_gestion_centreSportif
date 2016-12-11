@@ -8,8 +8,8 @@
                 <asp:BoundField DataField="id" headertext="ID" />
                 <asp:BoundField DataField="nom" headertext="Nom" />
                 <asp:BoundField DataField="description" headertext="Description" />
-                <asp:BoundField DataField="prix" headertext="Prix" />
-                <asp:BoundField DataField="duree" headertext="Duree" />
+                <asp:BoundField DataField="prix" headertext="Prix" DataFormatString="{0:C}" />
+                <asp:BoundField DataField="duree" headertext="Duree" DataFormatString="{0} jours"/>
             </Columns>
         </asp:GridView>
         <asp:SqlDataSource ID="MySQL" runat="server"
