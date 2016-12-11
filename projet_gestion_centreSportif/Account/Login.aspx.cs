@@ -37,6 +37,7 @@ namespace projet_gestion_centreSportif.Account
                     roles[1] = "admin";
                 }
                 CreateTicket(membre.Nom, roles);
+                HttpContext.Current.Session["userID"] = membre.IdMembre;
                 HttpContext.Current.Response.Redirect("~/default.aspx");
             } else {
                 FailureText.Text = "Wrong email/password, please try again!";
