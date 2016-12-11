@@ -62,7 +62,7 @@ namespace projet_gestion_centreSportif.Services {
                     using (MySqlDataReader reader = command.ExecuteReader()) {
                         if (reader.Read()) {
                             unMembre = new Membre();
-                            unMembre.Id = reader.GetString("id");
+                            unMembre.IdMembre = reader.GetString("id");
                             unMembre.Prenom = reader.GetString("prenom");
                             unMembre.Nom = reader.GetString("nom");
                             unMembre.Password = reader.GetString("password");
@@ -83,7 +83,7 @@ namespace projet_gestion_centreSportif.Services {
         /// </summary>
         /// <param name="idMembre">l'id du membre</param>
         /// <returns>un membre; null sinon</returns>
-        public Membre Read(int idMembre) {
+        public Membre Read(string idMembre) {
             Membre membre = null;
             try {
                 connexion.Open();
@@ -93,7 +93,7 @@ namespace projet_gestion_centreSportif.Services {
                     using (MySqlDataReader reader = command.ExecuteReader()) {
                         if (reader.Read()) {
                             membre = new Membre();
-                            membre.Id = reader.GetString("id");
+                            membre.IdMembre= reader.GetString("id");
                             membre.Prenom = reader.GetString("prenom");
                             membre.Nom = reader.GetString("nom");
                             membre.Password = reader.GetString("password");
@@ -133,7 +133,7 @@ namespace projet_gestion_centreSportif.Services {
         /// Supprimer un membre.
         /// </summary>
         /// <param name="idMembre"> id du membre a supprimer</param>
-        public void Delete(int idMembre) {
+        public void Delete(string idMembre) {
             try {
                 connexion.Open();
                 using (MySqlCommand command = new MySqlCommand(MembreService.DELETE_MEMBRE_QUERY, connexion.getConnection())) {
@@ -151,7 +151,7 @@ namespace projet_gestion_centreSportif.Services {
         /// Desinscrire un membre.
         /// </summary>
         /// <param name="idMembre"> id du membre a Desinscrire</param>
-        public void Desinscrire(int idMembre) {
+        public void Desinscrire(string idMembre) {
             Delete(idMembre);
         }
 
@@ -167,7 +167,7 @@ namespace projet_gestion_centreSportif.Services {
                     MySqlDataReader reader = command.ExecuteReader();
                     while (reader.Read()) {
                         Membre membre = new Membre();
-                        membre.Id = reader.GetString("id");
+                        membre.IdMembre = reader.GetString("id");
                         membre.Prenom = reader.GetString("prenom");
                         membre.Nom = reader.GetString("nom");
                         membre.Email = reader.GetString("Email");

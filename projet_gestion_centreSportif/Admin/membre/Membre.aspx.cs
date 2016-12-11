@@ -17,7 +17,7 @@ namespace projet_gestion_centreSportif.Admin.membre {
             return this.membreService.GetAll();
         }
 
-        private Models.Membre getMembre(int idMembre) {
+        private Models.Membre getMembre(string idMembre) {
             return this.membreService.Read(idMembre);
         }
     }
