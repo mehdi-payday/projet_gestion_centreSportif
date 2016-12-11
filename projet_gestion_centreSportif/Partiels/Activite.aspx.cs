@@ -50,11 +50,11 @@ namespace projet_gestion_centreSportif.Partiels {
                     panier.Add(new ActiviteService().Read(idActivite));
                 }
                 else {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "errMessage1", "alert(\"Vous êtes déjà inscrit à cette activité\");", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "errMessage1", "alert(\"Vous êtes déjà inscrit à cette activité\");", true);
                 }
             }
             else {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "errMessage2", "alert(\"Vous avez déjà l'activité dans votre panier\");", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "errMessage2", "alert(\"Vous avez déjà l'activité dans votre panier\");", true);
             }
             HttpContext.Current.Session["panier"]=panier;
         }
