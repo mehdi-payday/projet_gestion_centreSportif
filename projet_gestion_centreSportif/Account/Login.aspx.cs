@@ -19,9 +19,12 @@ namespace projet_gestion_centreSportif.Account
             //ForgotPasswordHyperLink.NavigateUrl = "Forgot";
             OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
             var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
-            if (!string.IsNullOrEmpty(returnUrl))
-            {
+            if (!string.IsNullOrEmpty(returnUrl)) {
                 RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
+            }
+            var email = Request.QueryString["email"];
+            if (email != null) {
+                Email.Text = email;
             }
         }
 

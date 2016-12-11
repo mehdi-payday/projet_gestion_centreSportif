@@ -15,8 +15,8 @@ namespace projet_gestion_centreSportif.Account
             membre.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(Password.Text, "SHA1");
             MembreService membreService = new MembreService();
             membreService.inscrire(membre);
-            FormsAuthentication.SetAuthCookie(Email.Text, false);
-            FormsAuthentication.RedirectFromLoginPage(Email.Text, false);
+            Response.Redirect("~/Account/Login.aspx?email=" + membre.Email);
+            
             
         }
     }
