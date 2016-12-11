@@ -1,4 +1,5 @@
-﻿using projet_gestion_centreSportif.Services;
+﻿using Microsoft.AspNet.Identity;
+using projet_gestion_centreSportif.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,9 @@ namespace projet_gestion_centreSportif.Partiels {
     public partial class Activite : System.Web.UI.Page {
 
         protected void Page_Load(object sender, EventArgs e) {
-            if (!IsPostBack) {
+            if (!IsPostBack && Request.IsAuthenticated) {
                 if (HttpContext.Current.Session["userID"] == null) {
+                    Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
                     Response.Redirect("~/Account/Login.aspx");
                 }
             }
