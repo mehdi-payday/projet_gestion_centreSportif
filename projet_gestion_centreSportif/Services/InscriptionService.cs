@@ -7,7 +7,7 @@ namespace projet_gestion_centreSportif.Services {
     public class InscriptionService {
         Connection connexion;
         private static readonly string INSERT_INSCRIPTION_QUERY = "INSERT INTO inscription(`IdInscription`, `IdMembre`, `Prix`, `DateInscription`, `DateFin`) VALUES(@idInscription, @idMembre, @prix, @dateInscription, @dateFin)";
-        private static readonly string FIND_BY_ACTIVITE = "SELECT `IdInscription`, `IdMembre`, `Prix`, `DateInscription`, `DateFin` FROM inscription WHERE `IdInscription` = @idInscription";
+        private static readonly string FIND_BY_ACTIVITE = "SELECT `IdInscription`, `IdMembre`, `Prix`, `DateInscription`, `DateFin` FROM inscription WHERE `IdActivite` = @idActivite";
         private static readonly string FIND_BY_MEMBRE = "SELECT `IdInscription`, `IdMembre`, `Prix`, `DateInscription`, `DateFin` FROM inscription WHERE `IdMembre` = @idMembre";
         private static readonly string UPDATE_INSCRIPTION_QUERY = "UPDATE inscription SET  `Prix` = @prix, `DateFin` = @dateFin,  WHERE `IdInscription` = @idIscription";
         private static readonly string GET_ALL_INSCRIPTION_QUERY = "SELECT `IdInscription`, `IdMembre`, `Prix`, `DateInscription`, `DateFin` FROM inscription";
@@ -80,23 +80,28 @@ namespace projet_gestion_centreSportif.Services {
         /// Fait un Find by Inscription dans la BD sur la table Inscription
         /// </summary>
         /// <param name="idInscription">l'id de l'inscription que l'on veut read</param>
-        /// <returns>une Inscription; null sinon</returns>
-        public Inscription FindByInscription(int idInscription) {
-            Inscription inscriptionModel = null;
+        /// <returns>des Inscriptions; null sinon</returns>
+        public List<Inscription> FindByActivite(int idInscription) {
+            List<Inscription> inscriptions = null;
             try {
                 using (MySqlConnection connection = connexion.getConnection()) {
                     connection.Open();
                     using (MySqlCommand command = new MySqlCommand(InscriptionService.FIND_BY_ACTIVITE,connection)) {
                         command.Prepare();
-                        command.Parameters.AddWithValue("idInscription",idInscription);
+                        command.Parameters.AddWithValue("idActivite",idInscription);
                         using (MySqlDataReader reader = command.ExecuteReader()) {
+                            Inscription inscriptionModel;
                             if (reader.Read()) {
-                                inscriptionModel = new Inscription();
-                                inscriptionModel.IdInscription = reader.GetString("idInscription");
-                                inscriptionModel.IdMembre = reader.GetString("idMembre");
-                                inscriptionModel.Prix = reader.GetString("prix");
-                                inscriptionModel.DateInscription = reader.GetDateTime("dateInscription");
-                                inscriptionModel.DateFin = reader.GetDateTime("dateFin");
+                                inscriptions = new List<Inscription>();
+                                do {
+                                    inscriptionModel = new Inscription();
+                                    inscriptionModel.IdInscription = reader.GetString("idInscription");
+                                    inscriptionModel.IdMembre = reader.GetString("idMembre");
+                                    inscriptionModel.Prix = reader.GetString("prix");
+                                    inscriptionModel.DateInscription = reader.GetDateTime("dateInscription");
+                                    inscriptionModel.DateFin = reader.GetDateTime("dateFin");
+                                    inscriptions.Add(inscriptionModel);
+                                } while (reader.Read());
                             }
                         }
                     }
@@ -105,16 +110,16 @@ namespace projet_gestion_centreSportif.Services {
                 // TODO
                 Console.WriteLine(exception.Message);
             }
-            return inscriptionModel;
+            return inscriptions;
         }
 
         /// <summary>
         /// Fait un Find by Membre dans la BD sur la table Inscription
         /// </summary>
         /// <param name="idMembre">l'id du membre que l'on veut read</param>
-        /// <returns>une Inscription; null sinon</returns>
-        public Inscription FindByMembre(int idMembre) {
-            Inscription inscriptionModel = null;
+        /// <returns>des Inscriptions; null sinon</returns>
+        public List<Inscription> FindByMembre(int idMembre) {
+            List<Inscription> inscriptions = null;
             try {
                 using (MySqlConnection connection = connexion.getConnection()) {
                     connection.Open();
@@ -122,13 +127,18 @@ namespace projet_gestion_centreSportif.Services {
                         command.Prepare();
                         command.Parameters.AddWithValue("idMembre",idMembre);
                         using (MySqlDataReader reader = command.ExecuteReader()) {
+                            Inscription inscriptionModel;
                             if (reader.Read()) {
-                                inscriptionModel = new Inscription();
-                                inscriptionModel.IdInscription = reader.GetString("idInscription");
-                                inscriptionModel.IdMembre = reader.GetString("idMembre");
-                                inscriptionModel.Prix = reader.GetString("prix");
-                                inscriptionModel.DateInscription = reader.GetDateTime("dateInscription");
-                                inscriptionModel.DateFin = reader.GetDateTime("dateFin");
+                                inscriptions = new List<Inscription>();
+                                do {
+                                    inscriptionModel = new Inscription();
+                                    inscriptionModel.IdInscription = reader.GetString("idInscription");
+                                    inscriptionModel.IdMembre = reader.GetString("idMembre");
+                                    inscriptionModel.Prix = reader.GetString("prix");
+                                    inscriptionModel.DateInscription = reader.GetDateTime("dateInscription");
+                                    inscriptionModel.DateFin = reader.GetDateTime("dateFin");
+                                    inscriptions.Add(inscriptionModel);
+                                } while (reader.Read());
                             }
                         }
                     }
@@ -137,7 +147,7 @@ namespace projet_gestion_centreSportif.Services {
                 // TODO
                 Console.WriteLine(exception.Message);
             }
-            return inscriptionModel;
+            return inscriptions;
         }
 
         /// <summary>
