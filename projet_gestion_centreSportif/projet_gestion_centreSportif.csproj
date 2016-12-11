@@ -422,6 +422,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Inscription.cs" />
     <Compile Include="Models\Membre.cs" />
+    <Compile Include="Models\Visite.cs" />
     <Compile Include="Partiels\Activite.aspx.cs">
       <DependentUpon>Activite.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -433,6 +434,7 @@
     <Compile Include="Services\ActiviteService.cs" />
     <Compile Include="Services\InscriptionService.cs" />
     <Compile Include="Services\MembreService.cs" />
+    <Compile Include="Services\VisiteService.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

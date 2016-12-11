@@ -26,16 +26,21 @@ namespace projet_gestion_centreSportif.Account
         }
 
         protected void LogIn(object sender, EventArgs e) {
+            MembreService membreService = new MembreService();
             Membre membre = new Membre();
+            VisiteService visiteService = new VisiteService();
+            Visite visite = new Visite();
             membre.Email = Email.Text;
             membre.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(Password.Text, "SHA1");
-            MembreService membreService = new MembreService();
             membre = membreService.MembreValid(membre);
+
             if (membre != null) {
                 string [] roles = new string[2] { "normal",null};
                 if (membre.IsAdmin == 1) {
                     roles[1] = "admin";
                 }
+                visite.IdMembre = membre.IdMembre;
+                visiteService.Login(visite);
                 CreateTicket(membre.Nom, roles);
                 HttpContext.Current.Session["userID"] = membre.IdMembre;
                 HttpContext.Current.Response.Redirect("~/default.aspx");
@@ -44,13 +49,13 @@ namespace projet_gestion_centreSportif.Account
                 FailureText.Visible = true;
             }
         }
-        private void CreateTicket(string name, string[] roles) {
+        private void CreateTicket(string nom, string[] roles) {
             var ticket = new FormsAuthenticationTicket(
                     version: 1,
-                    name: name,
+                    name: nom,
                     issueDate: DateTime.Now,
                     expiration: DateTime.Now.AddMinutes(30),
-                    isPersistent: false,
+                    isPersistent: RememberMe.Checked,
                     userData: String.Join("|", roles));
 
             var encryptedTicket = FormsAuthentication.Encrypt(ticket);

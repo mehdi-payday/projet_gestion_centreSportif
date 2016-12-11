@@ -96,6 +96,7 @@ namespace projet_gestion_centreSportif.Services {
                             membre.IdMembre= reader.GetString("id");
                             membre.Prenom = reader.GetString("prenom");
                             membre.Nom = reader.GetString("nom");
+                            membre.Email = reader.GetString("email");
                             membre.Password = reader.GetString("password");
                             membre.IsAdmin = reader.GetInt16("isAdmin");
                         }
@@ -120,6 +121,7 @@ namespace projet_gestion_centreSportif.Services {
                     command.Parameters.AddWithValue("nom", membre.Nom);
                     command.Parameters.AddWithValue("email", membre.Email);
                     command.Parameters.AddWithValue("password", membre.Password);
+                    command.Parameters.AddWithValue("id", membre.IdMembre);
 
                     command.ExecuteNonQuery();
                 }

@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Owin;
 using projet_gestion_centreSportif.Models;
+using projet_gestion_centreSportif.Services;
+using System.Web.Security;
 
 namespace projet_gestion_centreSportif.Account
 {
@@ -19,67 +21,54 @@ namespace projet_gestion_centreSportif.Account
             get;
             private set;
         }
+        MembreService membreService;
+        protected string userID { get; set; }
 
-        private bool HasPassword(ApplicationUserManager manager)
-        {
-            return manager.HasPassword(User.Identity.GetUserId());
+        protected void Page_Load() {
+            membreService = new MembreService();
+            if (HttpContext.Current.Session["userID"] == null) {
+                FormsAuthentication.SignOut();
+                Response.Redirect("~/Account/Login.aspx");
+            }
+            userID = (string)HttpContext.Current.Session["userID"];
+            MySQL.SelectCommand = "SELECT m.prenom, m.nom, m.email, v.date FROM visite v, membre m WHERE v.idMembre= m.id AND v.idMembre=" + userID;
         }
+        
+        protected void ChangeInfo(object sender, EventArgs e) {
+            Membre membre = membreService.Read(userID);
+            if (this.newPrenom.Text != null && this.newPrenom.Text !="") {
+                string newPrenom = this.newPrenom.Text;
+                membre.Prenom = newPrenom;
+            }
+            if (this.newNom.Text != null && this.newNom.Text !="") {
+                string newNom = this.newNom.Text;
+                membre.Nom = newNom;
+            }
 
-        public bool HasPhoneNumber { get; private set; }
+            membreService.Update(membre);
+            change_info_message.Text = "Vos informations ont été mis à jour. L'affichage va être mis à jour après votre prochaine connexion.";
+            change_info_message.Visible = true;
+        }
+        protected void ChangePassword(object sender, EventArgs e) {
+            Membre membre = membreService.Read(userID);
+            string newPassword1 = this.newPassword1.Text;
+            string newPassword2 = this.newPassword2.Text;
+            string inputCurrentPasswordHashed = FormsAuthentication.HashPasswordForStoringInConfigFile(currentPassword.Text, "SHA1");
 
-        public bool TwoFactorEnabled { get; private set; }
-
-        public bool TwoFactorBrowserRemembered { get; private set; }
-
-        public int LoginsCount { get; set; }
-
-        protected void Page_Load()
-        {
-            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-
-            HasPhoneNumber = string.IsNullOrEmpty(manager.GetPhoneNumber(User.Identity.GetUserId()));
-
-            // Enable this after setting up two-factor authentientication
-            //PhoneNumber.Text = manager.GetPhoneNumber(User.Identity.GetUserId()) ?? String.Empty;
-
-            TwoFactorEnabled = manager.GetTwoFactorEnabled(User.Identity.GetUserId());
-
-            LoginsCount = manager.GetLogins(User.Identity.GetUserId()).Count;
-
-            var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
-
-            if (!IsPostBack)
-            {
-                // Determine the sections to render
-                if (HasPassword(manager))
-                {
-                    ChangePassword.Visible = true;
-                }
-                else
-                {
-                    CreatePassword.Visible = true;
-                    ChangePassword.Visible = false;
-                }
-
-                // Render success message
-                var message = Request.QueryString["m"];
-                if (message != null)
-                {
-                    // Strip the query string from action
-                    Form.Action = ResolveUrl("~/Account/Manage");
-
-                    SuccessMessage =
-                        message == "ChangePwdSuccess" ? "Your password has been changed."
-                        : message == "SetPwdSuccess" ? "Your password has been set."
-                        : message == "RemoveLoginSuccess" ? "The account was removed."
-                        : message == "AddPhoneNumberSuccess" ? "Phone number has been added"
-                        : message == "RemovePhoneNumberSuccess" ? "Phone number was removed"
-                        : string.Empty;
-                    successMessage.Visible = !string.IsNullOrEmpty(SuccessMessage);
-                }
+            if (inputCurrentPasswordHashed != membre.Password) {
+                current_password_error.Text = "Mot de passe actuel erroné";
+                current_password_error.Visible = true;
+            } else if (newPassword1 != newPassword2) {
+                new_password_error.Text = "Les mots de passe ne correspondent pas";
+                new_password_error.Visible = true;
+            } else {
+                membre.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(newPassword1, "SHA1");
+                new_password_error.Visible = false;
+                current_password_error.Visible = false;
+                changePassowrd_message.Text = "Mot de passe mis à jour";
+                changePassowrd_message.Visible = true;
             }
         }
-
 
         private void AddErrors(IdentityResult result)
         {
