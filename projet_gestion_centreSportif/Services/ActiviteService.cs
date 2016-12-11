@@ -58,11 +58,11 @@ namespace projet_gestion_centreSportif.Services {
                         using (MySqlDataReader reader = command.ExecuteReader()) {
                             if (reader.Read()) {
                                 activiteModel = new Activite();
-                                activiteModel.id = reader.GetString("id");
+                                activiteModel.id = reader.GetInt32("id");
                                 activiteModel.Nom = reader.GetString("nom");
-                                activiteModel.Prix = reader.GetString("prix");
+                                activiteModel.Prix = reader.GetDouble("prix");
                                 activiteModel.Description = reader.GetString("description");
-                                activiteModel.Duree = reader.GetString("duree");
+                                activiteModel.Duree = reader.GetInt32("duree");
                             }
                         } 
                     }

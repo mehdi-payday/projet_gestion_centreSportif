@@ -42,7 +42,7 @@ namespace projet_gestion_centreSportif.Partiels {
             }
             bool dejaAjoute = false;
             foreach (Models.Activite activite in panier) {
-                if (int.Parse(activite.id) == idActivite) {
+                if (activite.id == idActivite) {
                     dejaAjoute = true;
                     break;
                 }

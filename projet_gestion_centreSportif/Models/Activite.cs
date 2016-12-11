@@ -1,10 +1,10 @@
 ﻿namespace projet_gestion_centreSportif.Models {
     public class Activite {
 
-        public string id { get; set; }
+        public int id { get; set; }
         public string Nom { get; set; }
-        public string Prix { get; set; }
+        public double Prix { get; set; }
         public string Description { get; set; }
-        public string Duree { get; set; }
+        public int Duree { get; set; }
     }
 }
