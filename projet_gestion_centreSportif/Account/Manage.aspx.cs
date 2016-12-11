@@ -14,13 +14,7 @@ using System.Web.Security;
 
 namespace projet_gestion_centreSportif.Account
 {
-    public partial class Manage : System.Web.UI.Page
-    {
-        protected string SuccessMessage
-        {
-            get;
-            private set;
-        }
+    public partial class Manage : System.Web.UI.Page {
         MembreService membreService;
         protected string userID { get; set; }
 
@@ -33,14 +27,14 @@ namespace projet_gestion_centreSportif.Account
             userID = (string)HttpContext.Current.Session["userID"];
             MySQL.SelectCommand = "SELECT m.prenom, m.nom, m.email, v.date FROM visite v, membre m WHERE v.idMembre= m.id AND v.idMembre=" + userID;
         }
-        
+
         protected void ChangeInfo(object sender, EventArgs e) {
             Membre membre = membreService.Read(userID);
-            if (this.newPrenom.Text != null && this.newPrenom.Text !="") {
+            if (this.newPrenom.Text != null && this.newPrenom.Text != "") {
                 string newPrenom = this.newPrenom.Text;
                 membre.Prenom = newPrenom;
             }
-            if (this.newNom.Text != null && this.newNom.Text !="") {
+            if (this.newNom.Text != null && this.newNom.Text != "") {
                 string newNom = this.newNom.Text;
                 membre.Nom = newNom;
             }
@@ -54,64 +48,15 @@ namespace projet_gestion_centreSportif.Account
             string newPassword1 = this.newPassword1.Text;
             string newPassword2 = this.newPassword2.Text;
             string inputCurrentPasswordHashed = FormsAuthentication.HashPasswordForStoringInConfigFile(currentPassword.Text, "SHA1");
-
             if (inputCurrentPasswordHashed != membre.Password) {
                 current_password_error.Text = "Mot de passe actuel erroné";
                 current_password_error.Visible = true;
-            } else if (newPassword1 != newPassword2) {
-                new_password_error.Text = "Les mots de passe ne correspondent pas";
-                new_password_error.Visible = true;
             } else {
                 membre.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(newPassword1, "SHA1");
-                new_password_error.Visible = false;
-                current_password_error.Visible = false;
+                membreService.Update(membre);
                 changePassowrd_message.Text = "Mot de passe mis à jour";
                 changePassowrd_message.Visible = true;
             }
-        }
-
-        private void AddErrors(IdentityResult result)
-        {
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError("", error);
-            }
-        }
-
-        // Remove phonenumber from user
-        protected void RemovePhone_Click(object sender, EventArgs e)
-        {
-            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
-            var result = manager.SetPhoneNumber(User.Identity.GetUserId(), null);
-            if (!result.Succeeded)
-            {
-                return;
-            }
-            var user = manager.FindById(User.Identity.GetUserId());
-            if (user != null)
-            {
-                signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
-                Response.Redirect("/Account/Manage?m=RemovePhoneNumberSuccess");
-            }
-        }
-
-        // DisableTwoFactorAuthentication
-        protected void TwoFactorDisable_Click(object sender, EventArgs e)
-        {
-            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            manager.SetTwoFactorEnabled(User.Identity.GetUserId(), false);
-
-            Response.Redirect("/Account/Manage");
-        }
-
-        //EnableTwoFactorAuthentication 
-        protected void TwoFactorEnable_Click(object sender, EventArgs e)
-        {
-            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            manager.SetTwoFactorEnabled(User.Identity.GetUserId(), true);
-
-            Response.Redirect("/Account/Manage");
         }
     }
 }

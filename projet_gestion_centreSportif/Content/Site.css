@@ -18,6 +18,11 @@ body {
 .dl-horizontal dt {
     white-space: normal;
 }
+.col-form-label{
+    padding-top: 7px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
 input[type="text"],

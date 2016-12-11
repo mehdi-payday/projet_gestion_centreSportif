@@ -13,15 +13,6 @@ namespace projet_gestion_centreSportif.Account {
     public partial class Manage {
         
         /// <summary>
-        /// successMessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder successMessage;
-        
-        /// <summary>
         /// change_info_message control.
         /// </summary>
         /// <remarks>
@@ -101,24 +92,6 @@ namespace projet_gestion_centreSportif.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox newPassword2;
-        
-        /// <summary>
-        /// new_password_error control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label new_password_error;
-        
-        /// <summary>
-        /// btnChangePassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnChangePassword;
         
         /// <summary>
         /// LoginHistory control.
