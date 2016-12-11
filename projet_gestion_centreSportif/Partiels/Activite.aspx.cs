@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -13,7 +14,7 @@ namespace projet_gestion_centreSportif.Partiels {
         protected void Page_Load(object sender, EventArgs e) {
             if (!IsPostBack && Request.IsAuthenticated) {
                 if (HttpContext.Current.Session["userID"] == null) {
-                    Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                    FormsAuthentication.SignOut();
                     Response.Redirect("~/Account/Login.aspx");
                 }
             }
@@ -22,8 +23,6 @@ namespace projet_gestion_centreSportif.Partiels {
         protected void addActivite(object sender, EventArgs e) {
             LinkButton btn = (LinkButton) sender;
             int idActivite = int.Parse(btn.CommandArgument.ToString());
-            //this.Request.Params.Add("id",idActivite.ToString());
-            //this.Response.Redirect("~/Partiels/Inscription.aspx?id="+idActivite);
 
             List<Models.Activite> panier = (List<Models.Activite>) HttpContext.Current.Session["panier"];
             if(panier == null) {
@@ -38,8 +37,6 @@ namespace projet_gestion_centreSportif.Partiels {
             }
             if (!dejaAjoute) {
                 String idMembre = (String) HttpContext.Current.Session["userID"];
-                //Models.Membre membreCourant = new MembreService().Read((int) Context.Session["userID"]);
-                //Models.Membre membreCourant = (Models.Membre) Session["userID"];
                 List<Models.Inscription> activiteInscrit = new InscriptionService().FindByMembre(int.Parse(idMembre));
                 if (activiteInscrit != null) {
                     foreach (Models.Inscription inscription in activiteInscrit) {
