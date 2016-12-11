@@ -38,10 +38,7 @@ CREATE TABLE `activite` (
 -- Dumping data for table `activite`
 --
 
-INSERT INTO `activite` (`nom`, `description`, `prix`, `duree`) 
-VALUES('NATATION ADULTE 1', 'Pour développer les habiletés de base et l’aisance dans l’eau. Flottaisons et battements de jambes au programme. Le cours se déroule en eau peu profonde.', 90, 10),
-      ('CARDIO VÉLO', 'Cours collectif d’entraînement cardiovasculaire permettant de travailler en musique sur vélo stationnaire.', 90, 10),
-      ('MUSCULATION LIBRE ', 'Pratique libre à notre salle de musculation. Serviette obligatoire lors des visites.', 159.99, 179);
+
 
 -- --------------------------------------------------------
 
@@ -76,8 +73,6 @@ CREATE TABLE `membre` (
 -- Dumping data for table `membre`
 --
 
-INSERT INTO `membre` (`prenom`, `nom`, `email`, `password`, `isAdmin`) VALUES
-('admin', 'admin', 'admin@site', 'D033E22AE348AEB5660FC2140AEC35850C4DA997', 1);
 
 -- --------------------------------------------------------
 
@@ -162,6 +157,15 @@ ALTER TABLE `inscription`
 --
 ALTER TABLE `visite`
   ADD CONSTRAINT `visite_ibfk_1` FOREIGN KEY (`idMembre`) REFERENCES `membre` (`id`);
+  
+  INSERT INTO `activite` (`nom`, `description`, `prix`, `duree`) 
+VALUES('NATATION ADULTE 1', 'Pour développer les habiletés de base et l’aisance dans l’eau. Flottaisons et battements de jambes au programme. Le cours se déroule en eau peu profonde.', 90, 10),
+      ('CARDIO VÉLO', 'Cours collectif d’entraînement cardiovasculaire permettant de travailler en musique sur vélo stationnaire.', 90, 10),
+      ('MUSCULATION LIBRE ', 'Pratique libre à notre salle de musculation. Serviette obligatoire lors des visites.', 159.99, 179);
+	  
+	  
+INSERT INTO `membre` (`prenom`, `nom`, `email`, `password`, `isAdmin`) VALUES
+('admin', 'admin', 'admin@site', 'D033E22AE348AEB5660FC2140AEC35850C4DA997', 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
