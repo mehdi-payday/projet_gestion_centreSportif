@@ -8,11 +8,11 @@ namespace projet_gestion_centreSportif.Services {
     public class ActiviteService {
 
         Connection connexion;
-        private static readonly string INSERT_ACTIVITE_QUERY = "INSERT INTO activite(`nom`, `prix`, `description`, `duree`) VALUES(@nom, @prix, @description, @duree)";
-        private static readonly string READ_ACTIVITE_QUERY = "SELECT `id`, `nom`, `prix`, `description`, `duree` FROM activite WHERE `id` = @id";
-        private static readonly string UPDATE_ACTIVITE_QUERY = "UPDATE activite SET `nom` = @nom, `prix` = @prix, `description` = @description, `duree` = @duree WHERE `id` = @id";
+        private static readonly string INSERT_ACTIVITE_QUERY = "INSERT INTO activite(`nom`, `prix`, `description`, `duree`, `image`) VALUES(@nom, @prix, @description, @duree, @image)";
+        private static readonly string READ_ACTIVITE_QUERY = "SELECT `id`, `nom`, `prix`, `description`, `duree`, `image` FROM activite WHERE `id` = @id";
+        private static readonly string UPDATE_ACTIVITE_QUERY = "UPDATE activite SET `nom` = @nom, `prix` = @prix, `description` = @description, `duree` = @duree, `image` = @image WHERE `id` = @id";
         private static readonly string DELETE_ACTIVITE_QUERY = "DELETE FROM activite WHERE `id` = @id";
-        private static readonly string GET_ALL_ACTIVITE_QUERY = "SELECT `id`, `nom`, `prix`, `description`, `duree` FROM activite";
+        private static readonly string GET_ALL_ACTIVITE_QUERY = "SELECT `id`, `nom`, `prix`, `description`, `duree`, `image` FROM activite";
 
         public ActiviteService() {
             connexion = new Connection();
@@ -32,6 +32,7 @@ namespace projet_gestion_centreSportif.Services {
                         command.Parameters.AddWithValue("prix", activiteModel.Prix);
                         command.Parameters.AddWithValue("description", activiteModel.Description);
                         command.Parameters.AddWithValue("duree", activiteModel.Duree);
+                        command.Parameters.AddWithValue("image", activiteModel.Image);
 
                         command.ExecuteNonQuery();
                     }
@@ -63,6 +64,7 @@ namespace projet_gestion_centreSportif.Services {
                                 activiteModel.Prix = reader.GetDouble("prix");
                                 activiteModel.Description = reader.GetString("description");
                                 activiteModel.Duree = reader.GetInt32("duree");
+                                activiteModel.Image = reader.GetString("image");
                             }
                         } 
                     }
@@ -88,6 +90,7 @@ namespace projet_gestion_centreSportif.Services {
                         command.Parameters.AddWithValue("prix", activiteModel.Prix);
                         command.Parameters.AddWithValue("description", activiteModel.Description);
                         command.Parameters.AddWithValue("duree", activiteModel.Duree);
+                        command.Parameters.AddWithValue("image", activiteModel.Image);
                         command.Parameters.AddWithValue("id", activiteModel.id);
 
                         command.ExecuteNonQuery();

@@ -6,5 +6,6 @@
         public double Prix { get; set; }
         public string Description { get; set; }
         public int Duree { get; set; }
+        public string Image { get; set; }
     }
 }
