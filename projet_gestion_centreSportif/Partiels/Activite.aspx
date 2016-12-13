@@ -19,6 +19,13 @@
                 <p>Notre centre offre aux membres les activités suivantes :</p>
                 <asp:GridView runat="server" ID="activitesAnon" class="table table-striped" AllowPaging="True" AllowSorting="True" DataSourceID="MySQL" autogeneratecolumns="false">
                     <Columns>
+                        <asp:TemplateField ShowHeader="False">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="btnDetails" runat="server" CausesValidation="false" OnClick="seeDetails" CommandArgument='<%# Eval("id")%>' CommandName="detail" Text="Détails">
+
+                                </asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:BoundField DataField="nom" headertext="Nom" />
                         <asp:BoundField DataField="description" headertext="Description" />
                         <asp:BoundField DataField="prix" headertext="Prix" DataFormatString="{0:C}" />
@@ -33,7 +40,14 @@
                     <Columns>
                         <asp:TemplateField ShowHeader="False">
                             <ItemTemplate>
-                                <asp:LinkButton ID="btnInscription" runat="server" CausesValidation="false" OnClick="addActivite" CommandArgument='<%# Eval("id")%>' CommandName="inscrire" Text="S'inscrire">
+                                <asp:LinkButton ID="btnInscription" runat="server" CausesValidation="false" OnClick="btnInscription_Click" CommandArgument='<%# Eval("id")%>' CommandName="inscrire" Text="S'inscrire">
+
+                                </asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField ShowHeader="False">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="btnDetails" runat="server" CausesValidation="false" OnClick="seeDetails" CommandArgument='<%# Eval("id")%>' CommandName="detail" Text="Détails">
 
                                 </asp:LinkButton>
                             </ItemTemplate>

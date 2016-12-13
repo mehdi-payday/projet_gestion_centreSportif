@@ -221,6 +221,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Partiels\Activite.aspx" />
     <Content Include="Partiels\Checkout.aspx" />
+    <Content Include="Partiels\Details.aspx" />
     <Content Include="Partiels\Panier.aspx" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
@@ -438,6 +439,13 @@
     </Compile>
     <Compile Include="Partiels\Checkout.aspx.designer.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Partiels\Details.aspx.cs">
+      <DependentUpon>Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Partiels\Details.aspx.designer.cs">
+      <DependentUpon>Details.aspx</DependentUpon>
     </Compile>
     <Compile Include="Partiels\Panier.aspx.cs">
       <DependentUpon>Panier.aspx</DependentUpon>
