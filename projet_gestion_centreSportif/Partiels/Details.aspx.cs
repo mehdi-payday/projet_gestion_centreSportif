@@ -13,6 +13,13 @@ namespace projet_gestion_centreSportif.Partiels {
 
         protected void Page_Load(object sender, EventArgs e) {
             id = Request.Params.Get("id");
+            int idActivite;
+            if(int.TryParse(id,out idActivite)) {
+                Models.Activite activite = new ActiviteService().Read(idActivite);
+                if (activite != null) {
+                    imageActivite.ImageUrl = activite.Image;
+                }
+            }
         }
 
         protected void btnInscrire_Click(object sender, EventArgs e) {

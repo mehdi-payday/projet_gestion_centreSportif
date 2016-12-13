@@ -23,9 +23,10 @@
     %>
     <div class="container">
         <h2>Détails de l'activité <%= activite.Nom %></h2>
-        <%-- <asp:Image ID="ImageActivite" runat="server" href="<%= activite.Image %>" /> --%>
+        <%-- <img alt="" src="<%= activite.Image %>" /> --%>
+        <asp:Image ID="imageActivite" runat="server" />
         <p style="text-align: justify;"><%= activite.Description %></p>
-        <p>
+        <p>  
             Durée de l'activité : <%= activite.Duree %> jours
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             Prix : <%= activite.Prix %> $
@@ -36,8 +37,8 @@
             </AnonymousTemplate>
             <%-- Si l'utilisateur est connecté, on affiche le bouton --%>
             <LoggedInTemplate>
-                <asp:Label ID="lblInscrire" runat="server" Text="S'inscrire dès maintenant !   "></asp:Label>
-                <asp:Button ID="btnInscrire" runat="server" Text="S'inscrire" OnClick="btnInscrire_Click" />
+                <%-- <asp:Label ID="lblInscrire" runat="server" Text="S'inscrire dès maintenant !   "></asp:Label> --%>
+                <asp:Button ID="btnInscrire" runat="server" Text="S'inscrire dès maintenant !" OnClick="btnInscrire_Click" Class="btn btn-primary" />
             </LoggedInTemplate>
         </asp:LoginView>
         
