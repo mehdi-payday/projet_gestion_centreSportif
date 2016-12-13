@@ -9,6 +9,7 @@ namespace projet_gestion_centreSportif.Services {
     public class VisiteService {
         private static readonly string INSERT_VISITE_QUERY = "INSERT INTO visite(`idMembre`, `ipAdresse`) VALUES(@idMembre, @ipAdresse)";
         private static readonly string READ_VISITE_QUERY = "SELECT `id`, `idMembre`, `date`, `ipAdresse` FROM visite WHERE `id` = @id";
+        private static readonly string UPDATE_VISITE_QUERY = "UPDATE visite SET `idMembre`=@idMembre, `date`=@date, `ipAdresse`=@ipAdresse WHERE `id`=@id";
         private static readonly string DELETE_VISITE_QUERY = "DELETE FROM visite WHERE `id` = @id";
         private static readonly string GET_ALL_VISITE_QUERY = "SELECT `id`, `idMembre`, `date`, `ipAdresse` FROM visite";
         Connection connexion;
@@ -18,7 +19,7 @@ namespace projet_gestion_centreSportif.Services {
         }
 
         /// <summary>
-        /// Ajouter unE VISITE a la base de donnee
+        /// Ajouter une visite a la base de donnee
         /// </summary>
         /// <param name="visite">la visite a ajouter</param>
         public void add(Visite visite) {
@@ -72,6 +73,70 @@ namespace projet_gestion_centreSportif.Services {
                 Console.WriteLine(mysqlException.Message);
             }
             return visite;
+        }
+        /// <summary>
+        /// Supprimer une visite.
+        /// </summary>
+        /// <param name="idVisite"> id de la visite à supprimer</param>
+        public void Delete(string idVisite) {
+            try {
+                connexion.Open();
+                using (MySqlCommand command = new MySqlCommand(VisiteService.DELETE_VISITE_QUERY, connexion.getConnection())) {
+                    command.Prepare();
+                    command.Parameters.AddWithValue("id", idVisite);
+
+                    command.ExecuteNonQuery();
+                }
+                connexion.Close();
+            } catch (MySqlException mysqlException) {
+                System.Diagnostics.Debug.WriteLine(mysqlException.Message);
+            }
+        }
+
+        /// <summary>
+        /// Mettre à jour une visite.
+        /// </summary>
+        /// <param name="visite">La visite à mettre àjour.</param>
+        public void Update(Visite visite) {
+            try {
+                connexion.Open();
+                using (MySqlCommand command = new MySqlCommand(VisiteService.UPDATE_VISITE_QUERY, connexion.getConnection())) {
+                    command.Prepare();
+                    command.Parameters.AddWithValue("idMembre", visite.IdMembre);
+                    command.Parameters.AddWithValue("date", visite.Date);
+                    command.Parameters.AddWithValue("ipAdresse", visite.IPAdresse);
+
+                    command.ExecuteNonQuery();
+                }
+                connexion.Close();
+            } catch (MySqlException mysqlException) {
+                System.Diagnostics.Debug.WriteLine(mysqlException.Message);
+            }
+        }
+        /// <summary>
+        /// Récupérer la liste de toutes les visites.
+        /// </summary>
+        /// <returns>Une liste de visite; une liste vide sinon</returns>
+        public List<Visite> GetAll() {
+            List<Visite> visites = new List<Visite>();
+            try {
+                connexion.Open();
+                using (MySqlCommand command = new MySqlCommand(VisiteService.GET_ALL_VISITE_QUERY, connexion.getConnection())) {
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read()) {
+                        Visite visite = new Visite();
+                        visite.IdVisite = reader.GetString("id");
+                        visite.IdMembre = reader.GetString("idMembre");
+                        visite.Date = reader.GetDateTime("date");
+                        visite.IPAdresse = reader.GetString("ipAdresse");
+                        visites.Add(visite);
+                    }
+                }
+                connexion.Close();
+            } catch (MySqlException mysqlException) {
+                System.Diagnostics.Debug.WriteLine(mysqlException.Message);
+            }
+            return visites;
         }
     }
 }

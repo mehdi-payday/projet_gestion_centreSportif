@@ -20,9 +20,9 @@ namespace projet_gestion_centreSportif.Services {
         }
 
         /// <summary>
-        /// Ajouter un membre a la base de donnee
+        /// Ajouter un membre à la base de donnée.
         /// </summary>
-        /// <param name="membre">le membre a ajouter</param>
+        /// <param name="membre">Le membre à ajouter.</param>
         public void add(Membre membre) {
             try {
                 connexion.Open();
@@ -47,7 +47,7 @@ namespace projet_gestion_centreSportif.Services {
         /// <summary>
         /// Inscrir un membre.
         /// </summary>
-        /// <param name="membre">le membre a inscrir</param>
+        /// <param name="membre">Le membre à inscrir</param>
         public void inscrire(Membre membre) {
             try {
                 connexion.Open();
@@ -65,10 +65,10 @@ namespace projet_gestion_centreSportif.Services {
             }
         }
         /// <summary>
-        /// Verifier si la combinaison de mot de passe et email est valide
+        /// Verifier si la combinaison du mot de passe et l'adresse email  est valide.
         /// </summary>
-        /// <param name="membre">le membre a verifier</param>
-        /// <returns>un membre; null sinon</returns>
+        /// <param name="membre">Le membre à vérifier.</param>
+        /// <returns>Un membre; null sinon.</returns>
         public Membre MembreValid(Membre membre) {
             Membre unMembre= null;
             try {
@@ -103,10 +103,10 @@ namespace projet_gestion_centreSportif.Services {
         }
 
         /// <summary>
-        /// Verifier si l'adresse email est unique
+        /// Vérifier si l'adresse email est unique
         /// </summary>
-        /// <param name="membre">le membre contenant l'adresse email</param>
-        /// <returns>un membre; null sinon</returns>
+        /// <param name="membre">Le membre contenant l'adresse email.</param>
+        /// <returns>Un membre; null sinon.</returns>
         public bool EmailUnique(Membre membre) {
             bool unique = true;
             try {
@@ -129,10 +129,10 @@ namespace projet_gestion_centreSportif.Services {
             return unique;
         }
         /// <summary>
-        /// Read un membre.
+        /// Récupérer un membre.
         /// </summary>
-        /// <param name="idMembre">l'id du membre</param>
-        /// <returns>un membre; null sinon</returns>
+        /// <param name="idMembre">L'id du membre.</param>
+        /// <returns>Un membre; null sinon.</returns>
         public Membre Read(string idMembre) {
             Membre membre = null;
             try {
@@ -164,15 +164,14 @@ namespace projet_gestion_centreSportif.Services {
             return membre;
         }
         /// <summary>
-        /// Fait un Update dans la BD sur la table Membre
+        /// Mettre à jour un membre.
         /// </summary>
-        /// <param name="membre">Le membre a modifier</param>
+        /// <param name="membre">Le membre à mettre àjour.</param>
         public void Update(Membre membre) {
             try {
                 connexion.Open();
                 using (MySqlCommand command = new MySqlCommand(MembreService.UPDATE_MEMBRE_QUERY, connexion.getConnection())) {
                     command.Prepare();
-                    command.Parameters.AddWithValue("id", membre.IdMembre);
                     command.Parameters.AddWithValue("prenom", membre.Prenom);
                     command.Parameters.AddWithValue("nom", membre.Nom);
                     command.Parameters.AddWithValue("email", membre.Email);
@@ -193,7 +192,7 @@ namespace projet_gestion_centreSportif.Services {
         /// <summary>
         /// Supprimer un membre.
         /// </summary>
-        /// <param name="idMembre"> id du membre a supprimer</param>
+        /// <param name="idMembre"> ID du membre à supprimer</param>
         public void Delete(string idMembre) {
             try {
                 connexion.Open();
@@ -209,17 +208,17 @@ namespace projet_gestion_centreSportif.Services {
             }
         }
         /// <summary>
-        /// Desinscrire un membre.
+        /// Désinscrire un membre.
         /// </summary>
-        /// <param name="idMembre"> id du membre a Desinscrire</param>
+        /// <param name="idMembre"> ID du membre à Désinscrire.</param>
         public void Desinscrire(string idMembre) {
             Delete(idMembre);
         }
 
         /// <summary>
-        /// Retourne la liste de tous les membres.
+        /// Récupérer la liste de tous les membres.
         /// </summary>
-        /// <returns>La liste de toute les membres; une liste vide sinon</returns>
+        /// <returns>Une liste de membres; une liste vide sinon</returns>
         public List<Membre> GetAll() {
             List<Membre> membres = new List<Membre>();
             try {
