@@ -25,7 +25,7 @@ namespace projet_gestion_centreSportif.Account
                 Response.Redirect("~/Account/Login.aspx");
             }
             userID = (string)HttpContext.Current.Session["userID"];
-            MySQL.SelectCommand = "SELECT m.prenom, m.nom, m.email, v.date FROM visite v, membre m WHERE v.idMembre= m.id AND v.idMembre=" + userID;
+            MySQL.SelectCommand = "SELECT m.prenom, m.nom, m.email, v.date, v.ipAdresse FROM visite v, membre m WHERE v.idMembre= m.id AND v.idMembre=" + userID + " ORDER BY date DESC";
         }
 
         protected void ChangeInfo(object sender, EventArgs e) {

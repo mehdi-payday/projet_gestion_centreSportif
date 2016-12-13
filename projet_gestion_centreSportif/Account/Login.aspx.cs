@@ -42,7 +42,12 @@ namespace projet_gestion_centreSportif.Account
                 if (membre.IsAdmin == 1) {
                     roles[1] = "admin";
                 }
+                string ipAdresse = Request.UserHostAddress;
+                if ("::1".Equals(ipAdresse)) {
+                    ipAdresse = "127.0.0.1";
+                }
                 visite.IdMembre = membre.IdMembre;
+                visite.IPAdresse = ipAdresse;
                 visiteService.Login(visite);
                 CreateTicket(membre.Nom, roles);
                 HttpContext.Current.Session["userID"] = membre.IdMembre;

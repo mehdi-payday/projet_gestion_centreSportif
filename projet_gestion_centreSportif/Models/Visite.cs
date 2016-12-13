@@ -8,5 +8,6 @@ namespace projet_gestion_centreSportif.Models {
         public string IdVisite{ get; set; }
         public string IdMembre{ get; set; }
         public DateTime Date { get; set; }
+        public string IPAdresse{ get; set; }
     }
 }

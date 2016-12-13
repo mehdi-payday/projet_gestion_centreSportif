@@ -7,10 +7,10 @@ using System.Web;
 
 namespace projet_gestion_centreSportif.Services {
     public class VisiteService {
-        private static readonly string INSERT_VISITE_QUERY = "INSERT INTO visite(`idMembre`) VALUES(@idMembre)";
-        private static readonly string READ_VISITE_QUERY = "SELECT `id`, `idMembre`, `date` FROM visite WHERE `id` = @id";
+        private static readonly string INSERT_VISITE_QUERY = "INSERT INTO visite(`idMembre`, `ipAdresse`) VALUES(@idMembre, @ipAdresse)";
+        private static readonly string READ_VISITE_QUERY = "SELECT `id`, `idMembre`, `date`, `ipAdresse` FROM visite WHERE `id` = @id";
         private static readonly string DELETE_VISITE_QUERY = "DELETE FROM visite WHERE `id` = @id";
-        private static readonly string GET_ALL_VISITE_QUERY = "SELECT `id`, `idMembre`, `date` FROM visite";
+        private static readonly string GET_ALL_VISITE_QUERY = "SELECT `id`, `idMembre`, `date`, `ipAdresse` FROM visite";
         Connection connexion;
 
         public VisiteService() {
@@ -27,6 +27,7 @@ namespace projet_gestion_centreSportif.Services {
                 using (MySqlCommand command = new MySqlCommand(VisiteService.INSERT_VISITE_QUERY, connexion.getConnection())) {
                     command.Prepare();
                     command.Parameters.AddWithValue("idMembre", visite.IdMembre);
+                    command.Parameters.AddWithValue("ipAdresse", visite.IPAdresse);
 
                     command.ExecuteNonQuery();
                 }
@@ -61,7 +62,8 @@ namespace projet_gestion_centreSportif.Services {
                             visite.IdVisite = reader.GetString("id");
                             visite.IdMembre = reader.GetString("idMembre");
                             visite.Date = reader.GetDateTime("date");
-                            
+                            visite.IPAdresse = reader.GetString("ipAdresse");
+
                         }
                     }
                 }
