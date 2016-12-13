@@ -61,12 +61,13 @@
     <div>
         <h4>Historique de connexion</h4>
         <hr />
-        <asp:GridView ID="LoginHistory" class="table table-striped" runat="server" DataSourceID="MySQL" AutoGenerateColumns="False">
+        <asp:GridView ID="LoginHistory" class="table table-striped" runat="server" DataSourceID="MySQL" AutoGenerateColumns="False" AllowPaging="True" AllowSorting="True">
         <Columns>
             <asp:BoundField DataField="nom" headertext="Nom" />
             <asp:BoundField DataField="prenom" headertext="Prenom" />
             <asp:BoundField DataField="email" headertext="Adresse courriel" />
             <asp:BoundField DataField="date" headertext="Date de connexion" />
+            <asp:BoundField DataField="ipAdresse" headertext="Adresse IP" />
         </Columns>
     </asp:GridView>
     <asp:SqlDataSource ID="MySQL" runat="server" 
