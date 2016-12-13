@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Web;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using Owin;
 using projet_gestion_centreSportif.Models;
 using projet_gestion_centreSportif.Services;
 using System.Web.Security;
@@ -55,6 +47,7 @@ namespace projet_gestion_centreSportif.Account
                 membre.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(newPassword1, "SHA1");
                 membreService.Update(membre);
                 changePassowrd_message.Text = "Mot de passe mis à jour";
+                current_password_error.Visible = false;
                 changePassowrd_message.Visible = true;
             }
         }

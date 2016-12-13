@@ -4,11 +4,11 @@
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
 <h2><%: Title %>.</h2>
-
 <div class="form-horizontal">        
     <h4>Changer vos informations</h4>       
     <hr />
     <div>
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server"><ContentTemplate> 
         <asp:Label class="text-success" ID="change_info_message" runat="server" visible="false"></asp:Label>
         <div class="form-group row">
             <asp:Label runat="server" AssociatedControlID="newNom" CssClass="col-sm-3 col-form-label">Nouveau nom:</asp:Label>
@@ -23,11 +23,13 @@
             </div>
         </div>
         <asp:Button ID="btnChangeInfo" OnClick="ChangeInfo" runat="server" class="btn btn-default " Text="Changer" />
+            </ContentTemplate></asp:UpdatePanel>
     </div>  
     <br />
     <h4>Changer de mot de passe</h4>
     <hr />
     <div >
+        <asp:UpdatePanel ID="UpdatePanel2" runat="server"><ContentTemplate> 
         <div class="form-group">
             <asp:Label class="text-success" ID="changePassowrd_message" runat="server" visible="false"></asp:Label>
             <asp:Label runat="server" AssociatedControlID="currentPassword" CssClass="col-sm-3 col-form-label">Mot de passe acctuel :</asp:Label>
@@ -54,7 +56,7 @@
             </div>
         </div>
         <asp:Button runat="server" OnClick="ChangePassword" validationgroup="passwords" Text="Changer" CssClass="btn btn-default" />
-        
+        </ContentTemplate></asp:UpdatePanel>
     </div>
     <br />
     <div>
