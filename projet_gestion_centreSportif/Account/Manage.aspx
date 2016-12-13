@@ -36,6 +36,7 @@
                 <asp:Label class="text-danger" ID="current_password_error" runat="server" visible="false"></asp:Label>
             </div>
         </div>
+        <br />
         <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="newPassword1" CssClass="col-sm-3 col-form-label">Nouveau mot de passe :</asp:Label>
             <div class="col-sm-9">
@@ -43,8 +44,6 @@
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="newPassword1"
                 CssClass="text-danger" ErrorMessage="Ce champ est obligatoire." validationgroup="passwords"/>
             </div>
-        </div>
-        <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="newPassword2" CssClass="col-sm-3 col-form-label">Confirmer mot de passe :</asp:Label>
             <div class="col-sm-9">
                 <asp:TextBox runat="server" ID="newPassword2" TextMode="Password" CssClass="form-control" />
