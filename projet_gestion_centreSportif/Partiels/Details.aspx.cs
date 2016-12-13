@@ -17,7 +17,12 @@ namespace projet_gestion_centreSportif.Partiels {
             if(int.TryParse(id,out idActivite)) {
                 Models.Activite activite = new ActiviteService().Read(idActivite);
                 if (activite != null) {
-                    imageActivite.ImageUrl = activite.Image;
+                    if (activite.Image != null && activite.Image.Contains("~/Content/Images/")) {
+                        imageActivite.ImageUrl = activite.Image;
+                    }
+                    else {
+                        imageActivite.Visible = false;
+                    }
                 }
             }
         }
