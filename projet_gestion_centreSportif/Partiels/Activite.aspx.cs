@@ -41,14 +41,14 @@ namespace projet_gestion_centreSportif.Partiels {
         }
 
         protected void btnInscription_Click(object sender, EventArgs e) {
-            LinkButton btn = (LinkButton) sender;
+            LinkButton btn = (LinkButton)sender;
             int idActivite = int.Parse(btn.CommandArgument.ToString());
             addActivite(idActivite);
         }
 
         protected void addActivite(int idActivite) {
-            List<Models.Activite> panier = (List<Models.Activite>) HttpContext.Current.Session["panier"];
-            if(panier == null) {
+            List<Models.Activite> panier = (List<Models.Activite>)HttpContext.Current.Session["panier"];
+            if (panier == null) {
                 panier = new List<Models.Activite>();
             }
             bool dejaAjoute = false;
@@ -59,7 +59,7 @@ namespace projet_gestion_centreSportif.Partiels {
                 }
             }
             if (!dejaAjoute) {
-                String idMembre = (String) HttpContext.Current.Session["userID"];
+                String idMembre = (String)HttpContext.Current.Session["userID"];
                 List<Models.Inscription> activiteInscrit = new InscriptionService().FindByMembre(int.Parse(idMembre));
                 if (activiteInscrit != null) {
                     foreach (Models.Inscription inscription in activiteInscrit) {
@@ -71,25 +71,30 @@ namespace projet_gestion_centreSportif.Partiels {
                 }
                 if (!dejaAjoute) {
                     panier.Add(new ActiviteService().Read(idActivite));
-                    Session.Add("activiteAdded", panier[panier.Count-1].Nom);
-                }
-                else {
+                    Session.Add("activiteAdded", panier[panier.Count - 1].Nom);
+                } else {
                     //ScriptManager.RegisterStartupScript(this, this.GetType(), "errMessage1", "alert(\"Vous êtes déjà inscrit à cette activité\");", true);
                     Session.Add("errorMsg", "Vous êtes déjà inscrit à cette activité");
                 }
-            }
-            else {
+            } else {
                 //ScriptManager.RegisterStartupScript(this, this.GetType(), "errMessage2", "alert(\"Vous avez déjà l'activité dans votre panier\");", true);
                 Session.Add("errorMsg", "Vous avez déjà l'activité dans votre panier");
             }
-            HttpContext.Current.Session["panier"]=panier;
+            HttpContext.Current.Session["panier"] = panier;
             Server.TransferRequest(Request.Url.AbsolutePath, false);
         }
 
         protected void seeDetails(object sender, EventArgs e) {
-            LinkButton btn = (LinkButton) sender;
+            LinkButton btn = (LinkButton)sender;
             int idActivite = int.Parse(btn.CommandArgument.ToString());
-            Response.Redirect("Details.aspx?id="+idActivite);
+            Response.Redirect("Details.aspx?id=" + idActivite);
+        }
+
+        protected void activites_DataBound(object sender, EventArgs e) {
+            if (Context.User.IsInRole("admin")) {
+                GridView gridview = (GridView)sender;
+                gridview.Columns[0].Visible = false;
+            }
         }
     }
 }

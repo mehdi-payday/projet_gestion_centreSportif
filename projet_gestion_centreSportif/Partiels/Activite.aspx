@@ -37,7 +37,7 @@
             <LoggedInTemplate>
                 <p>Vous pouvez vous inscrire aux activités suivantes :</p>
                 <asp:Label runat="server" ID="newLabel"></asp:Label>
-                <asp:GridView runat="server" ID="activites" class="table table-striped" AllowPaging="True" AllowSorting="True" DataSourceID="MySQL" autogeneratecolumns="false">
+                <asp:GridView runat="server" ID="activites" class="table table-striped" AllowPaging="True" AllowSorting="True" DataSourceID="MySQL" autogeneratecolumns="false" OnDataBound="activites_DataBound">
                     <Columns>
                         <asp:TemplateField ShowHeader="False">
                             <ItemTemplate>
