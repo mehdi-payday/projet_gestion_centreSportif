@@ -125,7 +125,7 @@ namespace projet_gestion_centreSportif.Services {
                             membre.Balance = reader.GetInt32("balance");
                             membre.Adresse = reader.GetString("adresse");
                             membre.Cart_Credit = reader.GetInt64("cart_credit");
-                            membre.Cart_CVC = reader.GetInt16("cart-cvc");
+                            membre.Cart_CVC = reader.GetInt16("cart_cvc");
 
                         }
                     }
@@ -209,7 +209,7 @@ namespace projet_gestion_centreSportif.Services {
                         membre.Balance = reader.GetInt32("balance");
                         membre.Adresse = reader.GetString("adresse");
                         membre.Cart_Credit = reader.GetInt64("cart_credit");
-                        membre.Cart_CVC = reader.GetInt16("cart-cvc");
+                        membre.Cart_CVC = reader.GetInt16("cart_cvc");
                         membres.Add(membre);
                     }
                 }

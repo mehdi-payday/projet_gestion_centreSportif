@@ -41,7 +41,7 @@
             <div class="col-sm-9">
                 <asp:TextBox runat="server" ID="newPassword1" TextMode="Password" CssClass="form-control" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="newPassword1"
-                CssClass="text-danger" ErrorMessage="Ce champ est obligatoire." />
+                CssClass="text-danger" ErrorMessage="Ce champ est obligatoire." validationgroup="passwords"/>
             </div>
         </div>
         <div class="form-group">
@@ -49,12 +49,12 @@
             <div class="col-sm-9">
                 <asp:TextBox runat="server" ID="newPassword2" TextMode="Password" CssClass="form-control" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="newPassword2"
-                CssClass="text-danger" Display="Dynamic" ErrorMessage="Ce champ est obligatoire." />
+                CssClass="text-danger" Display="Dynamic" ErrorMessage="Ce champ est obligatoire." validationgroup="passwords" />
                 <asp:CompareValidator runat="server" ControlToCompare="newPassword1" ControlToValidate="newPassword2"
-                CssClass="text-danger" Display="Dynamic" ErrorMessage="Les mots de passe ne correspondent pas." />
+                CssClass="text-danger" Display="Dynamic" ErrorMessage="Les mots de passe ne correspondent pas."/>
             </div>
         </div>
-        <asp:Button runat="server" OnClick="ChangePassword" Text="Changer" CssClass="btn btn-default" />
+        <asp:Button runat="server" OnClick="ChangePassword" validationgroup="passwords" Text="Changer" CssClass="btn btn-default" />
         
     </div>
     <br />
