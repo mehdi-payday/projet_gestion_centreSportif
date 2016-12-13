@@ -12,6 +12,7 @@ namespace projet_gestion_centreSportif.Services {
         private static readonly string DELETE_MEMBRE_QUERY = "DELETE FROM membre WHERE `id`=@id";
         private static readonly string GET_ALL_MEMRE_QUERY = "`id`, `prenom`, `nom`, `email`, `password`, `isAdmin`, `balance`, `adresse`, `cart_credit`, `cart_cvc` FROM membre";
         private static readonly string LOGIN_MEMBRE_QUERY = "SELECT * FROM membre WHERE email=@email and password=@password";
+        private static readonly string UNIQUE_EMAIL_QUERY= "SELECT * FROM membre WHERE email=@email";
         private static readonly string REGISTER_MEMBRE_QUERY = "INSERT INTO membre(`prenom`, `nom`, `email`, `password`) VALUES(@prenom, @nom, @email, @password)";
 
         public MembreService() {
@@ -101,6 +102,32 @@ namespace projet_gestion_centreSportif.Services {
             return unMembre;
         }
 
+        /// <summary>
+        /// Verifier si l'adresse email est unique
+        /// </summary>
+        /// <param name="membre">le membre contenant l'adresse email</param>
+        /// <returns>un membre; null sinon</returns>
+        public bool EmailUnique(Membre membre) {
+            bool unique = true;
+            try {
+                connexion.Open();
+                using (MySqlCommand command = new MySqlCommand(MembreService.UNIQUE_EMAIL_QUERY, connexion.getConnection())) {
+                    command.Prepare();
+                    command.Parameters.AddWithValue("email", membre.Email);
+
+                    using (MySqlDataReader reader = command.ExecuteReader()) {
+                        if (reader.HasRows) {
+                            unique = false;
+                        }
+                    }
+                }
+                connexion.Close();
+            } catch (MySqlException mysqlException) {
+                System.Diagnostics.Debug.WriteLine(mysqlException.Message);
+            }
+
+            return unique;
+        }
         /// <summary>
         /// Read un membre.
         /// </summary>
