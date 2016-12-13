@@ -75,7 +75,7 @@ CREATE TABLE `membre` (
     `id` int(11) NOT NULL,
     `prenom` varchar(20) DEFAULT NULL,
     `nom` varchar(20) DEFAULT NULL,
-    `email` varchar(50) DEFAULT NULL,
+    `email` varchar(50) UNIQUE DEFAULT NULL,
     `password` varchar(255) DEFAULT NULL,
     `isAdmin` INT(1) NOT NULL DEFAULT 0,
     `balance` double NOT NULL DEFAULT 500,
