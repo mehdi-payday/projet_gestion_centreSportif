@@ -10,6 +10,13 @@
                     </asp:LinkButton>
                 </ItemTemplate>
             </asp:TemplateField>
+            <asp:TemplateField ShowHeader="False">
+                <ItemTemplate>
+                    <asp:LinkButton ID="btnDetails" runat="server" CausesValidation="false" OnClick="seeDetails" CommandArgument='<%# Eval("id")%>' CommandName="detail" Text="Détails">
+
+                    </asp:LinkButton>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:BoundField DataField="Nom" headertext="Nom" />
             <asp:BoundField DataField="Description" headertext="Description" />
             <asp:BoundField DataField="Prix" headertext="Prix" DataFormatString="{0:C2}" />

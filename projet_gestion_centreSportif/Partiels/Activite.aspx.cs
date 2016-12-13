@@ -36,6 +36,8 @@ namespace projet_gestion_centreSportif.Partiels {
                 //    }
                 //}
             }
+            if (Context.User.IsInRole("admin")) {
+            }
         }
 
         protected void btnInscription_Click(object sender, EventArgs e) {
@@ -89,6 +91,5 @@ namespace projet_gestion_centreSportif.Partiels {
             int idActivite = int.Parse(btn.CommandArgument.ToString());
             Response.Redirect("Details.aspx?id="+idActivite);
         }
-
     }
 }

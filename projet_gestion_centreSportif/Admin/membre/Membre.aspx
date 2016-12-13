@@ -4,12 +4,15 @@
     <asp:GridView runat="server" ID="membres" class="table table-striped" AllowPaging="True" AllowSorting="True" DataSourceID="MySQL" DataKeyNames="id" autogeneratecolumns="false">
             <Columns>
                 <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
-                <asp:BoundField DataField="id" headertext="ID" />
+                <asp:BoundField DataField="id" headertext="ID" ReadOnly="true" />
                 <asp:BoundField DataField="prenom" headertext="Prenom" />
                 <asp:BoundField DataField="nom" headertext="Nom" />
                 <asp:BoundField DataField="email" headertext="Adresse courriel" />
-                <asp:BoundField DataField="password" headertext="Mot de Passe" />
-                <asp:BoundField DataField="isAdmin" headertext="Administrateur?" />
+                <asp:TemplateField HeaderText="Administrateur?">
+                    <ItemTemplate>
+                        <asp:Label ID="isAdminLabel" runat="server" Text='<%# (Convert.ToDecimal(Eval("isAdmin")) > 0) ? "Vrai" : "Faux"   %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
         </asp:GridView>
         <asp:SqlDataSource ID="MySQL" runat="server"
@@ -18,7 +21,7 @@
             InsertCommand="INSERT INTO `membre`(`prenom`, `nom`, `email`, `password`) VALUES (?,?,?,?);" 
             ProviderName="<%$ ConnectionStrings:centresportifConnectionString.ProviderName %>" 
             SelectCommand="SELECT `id`, `prenom`, `nom`, `email`, `password`, `isAdmin` FROM `membre`;"
-            UpdateCommand="UPDATE `membre` SET `prenom` = @Prenom, `nom` = @Nom, `email` = @Email, `password` = @Password WHERE (`id` = @ID);">
+            UpdateCommand="UPDATE `membre` SET `prenom` = @Prenom, `nom` = @Nom, `email` = @Email WHERE (`id` = @ID);">
             <InsertParameters>
                 <asp:Parameter Name="Prenom" Type="String"/>
                 <asp:Parameter Name="Nom" Type="String"/>
@@ -29,7 +32,6 @@
                 <asp:Parameter Name="Prenom" Type="String"/>
                 <asp:Parameter Name="Nom" Type="String"/>
                 <asp:Parameter Name="Email" Type="String"/>
-                <asp:Parameter Name="Password" Type="String"/>
                 <asp:Parameter Name="ID" Type="Int32"/>
             </UpdateParameters>
             <DeleteParameters>

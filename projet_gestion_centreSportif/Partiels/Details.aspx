@@ -19,7 +19,6 @@
                 }
             }
         }
-
     %>
     <div class="container">
         <h2>Détails de l'activité <%= activite.Nom %></h2>
@@ -31,16 +30,18 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             Prix : <%= activite.Prix %> $
         </p>
+        <a runat="server" Class="btn btn-warning" href="~/Partiels/Activite">Retourner aux activités</a>
         <asp:LoginView runat="server" ViewStateMode="Disabled">
             <AnonymousTemplate>
                 
             </AnonymousTemplate>
             <%-- Si l'utilisateur est connecté, on affiche le bouton --%>
             <LoggedInTemplate>
-                <%-- <asp:Label ID="lblInscrire" runat="server" Text="S'inscrire dès maintenant !   "></asp:Label> --%>
-                <asp:Button ID="btnInscrire" runat="server" Text="S'inscrire dès maintenant !" OnClick="btnInscrire_Click" Class="btn btn-primary" />
+                <% if (!Context.User.IsInRole("admin") && !hasActivite(int.Parse(Request.Params.Get("id")))) { %>
+                    <%-- <asp:Label ID="lblInscrire" runat="server" Text="S'inscrire dès maintenant !   "></asp:Label> --%>
+                    <asp:Button ID="btnInscrire" runat="server" Text="Ajouter au panier" OnClick="btnInscrire_Click" Class="btn btn-primary" />
+                <% } %>
             </LoggedInTemplate>
         </asp:LoginView>
-        
     </div>
 </asp:Content>

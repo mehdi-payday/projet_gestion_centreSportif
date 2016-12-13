@@ -32,5 +32,11 @@ namespace projet_gestion_centreSportif.Partiels {
             Session["panier"] = panier;
             Server.TransferRequest(Request.Url.AbsolutePath, false);
         }
+
+        protected void seeDetails(object sender, EventArgs e) {
+            LinkButton btn = (LinkButton)sender;
+            int idActivite = int.Parse(btn.CommandArgument.ToString());
+            Response.Redirect("Details.aspx?id=" + idActivite);
+        }
     }
 }

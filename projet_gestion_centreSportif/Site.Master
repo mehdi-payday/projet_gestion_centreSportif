@@ -50,13 +50,8 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Home</a></li>
-                        <% if (Context.User.IsInRole("admin")){ %>
-                            <li><a runat="server" href="~/Admin/activite/Activite">Admin-Activite</a></li>
-                            <li><a runat="server" href="~/Admin/membre/Membre">Admin-Membre</a></li>    
-                        <% } else { %>                        
-                            <li><a runat="server" href="~/Partiels/Activite">Activite</a></li>
-                        <% } %>
+                        <li><a runat="server" href="~/">Home</a></li>                  
+                        <li><a runat="server" href="~/Partiels/Activite">Activite</a></li>
                         <li><a runat="server" href="~/About">À propos</a></li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>
                     </ul>
@@ -69,21 +64,26 @@
                         </AnonymousTemplate>
                         <LoggedInTemplate>
                             <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a runat="server" href="~/Partiels/Panier" title="Accede au panier"><span class="glyphicon glyphicon-shopping-cart"></span> <span class="badge"><%= ViewState["panierCount"] != null ? ViewState["panierCount"]:0 %></span></a>
-                                </li>
-                                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Bonjour, <%: Context.User.Identity.GetUserName()  %>!<span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                      <li><a  runat="server" href="~/Account/Manage" title="Manage your account">Mon compte</a></li>
-                                      <li><a  runat="server" href="#">Mes activités</a></li>
-                                      <li role="separator" class="divider"></li>
-          
-                                      <li>
-                                          <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="&lt;i aria-hidden=&quot;true&quot; class=&quot;glyphicon glyphicon-log-out&quot;&gt;&lt;/i&gt;&nbsp;Se déconnecter" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
-		                              </li>
-                                    </ul>
-                              </li>
-                            </ul>
+                            <li>
+                                <a runat="server" href="~/Partiels/Panier" title="Accede au panier"><span class="glyphicon glyphicon-shopping-cart"></span> <span class="badge"><%= ViewState["panierCount"] != null ? ViewState["panierCount"]:0 %></span></a>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Bonjour, <%: Context.User.Identity.GetUserName()  %> <% if (Context.User.IsInRole("admin")) { %><span class="glyphicon glyphicon-user"></span><% } %> <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a  runat="server" href="~/Account/Manage" title="Manage your account">Mon compte</a></li>
+                                    <% if (Context.User.IsInRole("admin")) { %>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a runat="server" href="~/Admin/activite/Activite">Gestion Activites</a></li>
+                                        <li><a runat="server" href="~/Admin/membre/Membre">Gestion Membre</a></li>
+                                    <% } else { %>
+                                        <li><a  runat="server" href="#">Mes Activités</a></li>
+                                    <% } %>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="&lt;i aria-hidden=&quot;true&quot; class=&quot;glyphicon glyphicon-log-out&quot;&gt;&lt;/i&gt;&nbsp;Se déconnecter" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+		                            </li>
+                                </ul>
+                            </li>
                         </LoggedInTemplate>
                     </asp:LoginView>
                 </div>

@@ -36,11 +36,12 @@
             <%-- Si l'utilisateur est connecté, on affiche le bouton --%>
             <LoggedInTemplate>
                 <p>Vous pouvez vous inscrire aux activités suivantes :</p>
+                <asp:Label runat="server" ID="newLabel"></asp:Label>
                 <asp:GridView runat="server" ID="activites" class="table table-striped" AllowPaging="True" AllowSorting="True" DataSourceID="MySQL" autogeneratecolumns="false">
                     <Columns>
                         <asp:TemplateField ShowHeader="False">
                             <ItemTemplate>
-                                <asp:LinkButton ID="btnInscription" runat="server" CausesValidation="false" OnClick="btnInscription_Click" CommandArgument='<%# Eval("id")%>' CommandName="inscrire" Text="S'inscrire">
+                                <asp:LinkButton ID="btnInscription" runat="server" CausesValidation="false" OnClick="btnInscription_Click" CommandArgument='<%# Eval("id")%>' CommandName="inscrire" Text="Ajouter au panier">
 
                                 </asp:LinkButton>
                             </ItemTemplate>

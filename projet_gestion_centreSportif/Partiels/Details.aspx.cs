@@ -36,6 +36,27 @@ namespace projet_gestion_centreSportif.Partiels {
             Response.Redirect("Activite.aspx");
         }
 
+        protected bool hasActivite(int idActivite) {
+            List<Models.Activite> panier = (List<Models.Activite>)HttpContext.Current.Session["panier"];
+            if (panier != null) {
+                foreach (Models.Activite activite in panier) {
+                    if (activite.id == idActivite) {
+                        return true;
+                    }
+                }
+            }
+            String idMembre = (String)HttpContext.Current.Session["userID"];
+            List<Models.Inscription> activiteInscrit = new InscriptionService().FindByMembre(int.Parse(idMembre));
+            if (activiteInscrit != null) {
+                foreach (Models.Inscription inscription in activiteInscrit) {
+                    if (int.Parse(inscription.IdActivite) == idActivite) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         protected void addActivite(int idActivite) {
             List<Models.Activite> panier = (List<Models.Activite>) HttpContext.Current.Session["panier"];
             if (panier == null) {
