@@ -70,14 +70,19 @@
                         <LoggedInTemplate>
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
-                                    <a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a>
-                                </li>
-                                <li>
                                     <a runat="server" href="~/Partiels/Panier" title="Accede au panier"><span class="glyphicon glyphicon-shopping-cart"></span> <span class="badge"><%= ViewState["panierCount"] != null ? ViewState["panierCount"]:0 %></span></a>
                                 </li>
-                                <li>
-                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
-                                </li>
+                                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Bonjour, <%: Context.User.Identity.GetUserName()  %>!<span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                      <li><a  runat="server" href="~/Account/Manage" title="Manage your account">Mon compte</a></li>
+                                      <li><a  runat="server" href="#">Mes activités</a></li>
+                                      <li role="separator" class="divider"></li>
+          
+                                      <li>
+                                          <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="&lt;i aria-hidden=&quot;true&quot; class=&quot;glyphicon glyphicon-log-out&quot;&gt;&lt;/i&gt;&nbsp;Se déconnecter" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+		                              </li>
+                                    </ul>
+                              </li>
                             </ul>
                         </LoggedInTemplate>
                     </asp:LoginView>
