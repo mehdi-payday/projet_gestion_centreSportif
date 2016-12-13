@@ -38,8 +38,8 @@ namespace projet_gestion_centreSportif.Services {
                     }
                 }
             }
-            catch (MySqlException exception) {
-                // TODO
+            catch (MySqlException mysqlException) {
+                System.Diagnostics.Debug.WriteLine(mysqlException.Message);
             }
         }
 
@@ -70,8 +70,8 @@ namespace projet_gestion_centreSportif.Services {
                     }
                 }
             }
-            catch (MySqlException exception) {
-                // TODO
+            catch (MySqlException mysqlException) {
+                System.Diagnostics.Debug.WriteLine(mysqlException.Message);
             }
             return activiteModel;
         }
@@ -97,8 +97,8 @@ namespace projet_gestion_centreSportif.Services {
                     }
                 }
             }
-            catch (MySqlException exception) {
-                // TODO
+            catch (MySqlException mysqlException) {
+                System.Diagnostics.Debug.WriteLine(mysqlException.Message);
             }
         }
 
@@ -118,15 +118,15 @@ namespace projet_gestion_centreSportif.Services {
                     }
                 }
             }
-            catch (MySqlException exception) {
-                // TODO
+            catch (MySqlException mysqlException) {
+                System.Diagnostics.Debug.WriteLine(mysqlException.Message);
             }
         }
 
         /// <summary>
-        /// Retourne la liste de toutes les activite de la table Activite
+        /// Retourne la liste de toutes les activites de la table Activite
         /// </summary>
-        /// <returns>La liste de toutes les activite; une liste vide sinon</returns>
+        /// <returns>La liste de toutes les activites; une liste vide sinon</returns>
         public DataSet GetAll() {
             DataSet dataset = null;
             try {
@@ -139,8 +139,8 @@ namespace projet_gestion_centreSportif.Services {
                     }
                 }
             }
-            catch (MySqlException exception) {
-                // TODO
+            catch (MySqlException mysqlException) {
+                System.Diagnostics.Debug.WriteLine(mysqlException.Message);
             }
             return dataset;
         }

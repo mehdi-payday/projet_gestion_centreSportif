@@ -37,9 +37,8 @@ namespace projet_gestion_centreSportif.Services {
                         command.ExecuteNonQuery();
                     }
                 }
-            } catch (MySqlException exception) {
-                // TODO
-                Console.WriteLine(exception.Message);
+            } catch (MySqlException mysqlException) {
+                System.Diagnostics.Debug.WriteLine(mysqlException.Message);
             }
         }
 
@@ -68,10 +67,8 @@ namespace projet_gestion_centreSportif.Services {
                         }
                     }
                 }
-            } catch (MySqlException exception) {
-                // TODO
-                Console.WriteLine(exception.Message);
-
+            } catch (MySqlException mysqlException) {
+                System.Diagnostics.Debug.WriteLine(mysqlException.Message);
             }
             return inscriptionModel;
         }
@@ -106,9 +103,8 @@ namespace projet_gestion_centreSportif.Services {
                         }
                     }
                 }
-            } catch (MySqlException exception) {
-                // TODO
-                Console.WriteLine(exception.Message);
+            } catch (MySqlException mysqlException) {
+                System.Diagnostics.Debug.WriteLine(mysqlException.Message);
             }
             return inscriptions;
         }
@@ -143,9 +139,8 @@ namespace projet_gestion_centreSportif.Services {
                         }
                     }
                 }
-            } catch (MySqlException exception) {
-                // TODO
-                Console.WriteLine(exception.Message);
+            } catch (MySqlException mysqlException) {
+                System.Diagnostics.Debug.WriteLine(mysqlException.Message);
             }
             return inscriptions;
         }
@@ -165,9 +160,8 @@ namespace projet_gestion_centreSportif.Services {
                         command.ExecuteNonQuery();
                     }
                 }
-            } catch (MySqlException exception) {
-                // TODO
-                Console.WriteLine(exception.Message);
+            } catch (MySqlException mysqlException) {
+                System.Diagnostics.Debug.WriteLine(mysqlException.Message);
             }
         }
 
@@ -186,16 +180,14 @@ namespace projet_gestion_centreSportif.Services {
                         command.ExecuteNonQuery();
                     }
                 }
-            } catch (MySqlException exception) {
-                // TODO
-                Console.WriteLine(exception.Message);
-
+            } catch (MySqlException mysqlException) {
+                System.Diagnostics.Debug.WriteLine(mysqlException.Message);
             }
         }
 
 
         /// <summary>
-        /// Retourne la liste de toutes les inscription de la table Inscription
+        /// Retourne la liste de toutes les inscriptions de la table Inscription
         /// </summary>
         /// <returns>La liste de toutes les inscription; une liste vide sinon</returns>
         public List<Inscription> GetAll() {
@@ -219,9 +211,8 @@ namespace projet_gestion_centreSportif.Services {
                         }
                     }
                 }
-            } catch (MySqlException exception) {
-                // TODO
-                Console.WriteLine(exception.Message);
+            } catch (MySqlException mysqlException) {
+                System.Diagnostics.Debug.WriteLine(mysqlException.Message);
             }
             return inscriptions;
         }
