@@ -211,6 +211,12 @@
     <Content Include="Content\Images\musculation.jpg" />
     <Content Include="Content\Images\natation.jpg" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\Images\About\badminton_court.jpg" />
+    <Content Include="Content\Images\About\basketBall_court.jpg" />
+    <Content Include="Content\Images\About\front_1.jpg" />
+    <Content Include="Content\Images\About\gymnase.jpg" />
+    <Content Include="Content\Images\About\soccer_field.jpg" />
+    <Content Include="Content\Images\About\swimming_pool.jpg" />
     <Content Include="Content\sports-banner.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
