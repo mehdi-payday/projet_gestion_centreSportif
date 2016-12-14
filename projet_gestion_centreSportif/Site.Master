@@ -109,7 +109,6 @@
 $(document).ready(function () {
     var url = window.location;
     $('ul.nav li a').each(function () {
-        console.log(url);
         if (this.href == url) {
             $("ul.nav li").each(function () {
                 if ($(this).hasClass("active")) {
@@ -117,8 +116,6 @@ $(document).ready(function () {
                 }
             });
             $(this).parent().addClass('active');
-        } else {
-            $('.dropdown-toggle').addClass("active");
         }
     });
 });
