@@ -6,8 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace projet_gestion_centreSportif.Partiels {
-    public partial class Checkout : System.Web.UI.Page {
-
+    public partial class Confirmation : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
 
         }

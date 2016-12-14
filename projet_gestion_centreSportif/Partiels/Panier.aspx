@@ -23,5 +23,14 @@
             <asp:BoundField DataField="Duree" headertext="Duree" DataFormatString="{0} jours"/>
         </Columns>
     </asp:GridView>
-    <a runat="server" href="~/Partiels/Checkout" class="btn btn-warning">Checkout</a>
+    <asp:Button runat="server" class="btn btn-warning" onclick="toggleCheckout" Text="Checkout" />
+    <asp:Panel ID="errorPanel" runat="server" visible="false">
+        <div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Erreur!</strong> <asp:Label runat="server" ID="error"></asp:Label>
+        </div>
+    </asp:Panel>
+    <asp:Panel ID="checkoutPanel" runat="server" Visible="false">
+        <h2>Checkout</h2>
+    </asp:Panel>
 </asp:Content>

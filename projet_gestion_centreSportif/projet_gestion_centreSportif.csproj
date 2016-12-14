@@ -223,8 +223,9 @@
     <Content Include="Admin\Web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Partiels\Activite.aspx" />
-    <Content Include="Partiels\Checkout.aspx" />
+    <Content Include="Partiels\Confirmation.aspx" />
     <Content Include="Partiels\Details.aspx" />
+    <Content Include="Partiels\MesActivites.aspx" />
     <Content Include="Partiels\Panier.aspx" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
@@ -436,12 +437,12 @@
     <Compile Include="Partiels\Activite.aspx.designer.cs">
       <DependentUpon>Activite.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Partiels\Checkout.aspx.cs">
-      <DependentUpon>Checkout.aspx</DependentUpon>
+    <Compile Include="Partiels\Confirmation.aspx.cs">
+      <DependentUpon>Confirmation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Partiels\Checkout.aspx.designer.cs">
-      <DependentUpon>Checkout.aspx</DependentUpon>
+    <Compile Include="Partiels\Confirmation.aspx.designer.cs">
+      <DependentUpon>Confirmation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Partiels\Details.aspx.cs">
       <DependentUpon>Details.aspx</DependentUpon>
@@ -449,6 +450,13 @@
     </Compile>
     <Compile Include="Partiels\Details.aspx.designer.cs">
       <DependentUpon>Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Partiels\MesActivites.aspx.cs">
+      <DependentUpon>MesActivites.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Partiels\MesActivites.aspx.designer.cs">
+      <DependentUpon>MesActivites.aspx</DependentUpon>
     </Compile>
     <Compile Include="Partiels\Panier.aspx.cs">
       <DependentUpon>Panier.aspx</DependentUpon>

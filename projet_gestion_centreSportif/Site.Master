@@ -76,7 +76,7 @@
                                         <li><a runat="server" href="~/Admin/activite/Activite">Gestion Activites</a></li>
                                         <li><a runat="server" href="~/Admin/membre/Membre">Gestion Membre</a></li>
                                     <% } else { %>
-                                        <li><a  runat="server" href="#">Mes Activités</a></li>
+                                        <li><a  runat="server" href="~/Partiels/MesActivites">Mes Activités</a></li>
                                     <% } %>
                                     <li role="separator" class="divider"></li>
                                     <li>

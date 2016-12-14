@@ -38,5 +38,9 @@ namespace projet_gestion_centreSportif.Partiels {
             int idActivite = int.Parse(btn.CommandArgument.ToString());
             Response.Redirect("Details.aspx?id=" + idActivite);
         }
+
+        protected void toggleCheckout(object sender, EventArgs e) {
+            checkoutPanel.Visible = checkoutPanel.Visible ? false:true;
+        }
     }
 }

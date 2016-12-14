@@ -10,6 +10,6 @@
 namespace projet_gestion_centreSportif.Partiels {
     
     
-    public partial class Checkout {
+    public partial class Confirmation {
     }
 }

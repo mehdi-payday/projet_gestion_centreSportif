@@ -36,8 +36,6 @@ namespace projet_gestion_centreSportif.Partiels {
                 //    }
                 //}
             }
-            if (Context.User.IsInRole("admin")) {
-            }
         }
 
         protected void btnInscription_Click(object sender, EventArgs e) {

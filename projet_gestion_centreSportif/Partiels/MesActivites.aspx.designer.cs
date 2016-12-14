@@ -10,7 +10,7 @@
 namespace projet_gestion_centreSportif.Partiels {
     
     
-    public partial class Panier {
+    public partial class MesActivites {
         
         /// <summary>
         /// activites control.
@@ -22,30 +22,12 @@ namespace projet_gestion_centreSportif.Partiels {
         protected global::System.Web.UI.WebControls.GridView activites;
         
         /// <summary>
-        /// errorPanel control.
+        /// MySQL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel errorPanel;
-        
-        /// <summary>
-        /// error control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label error;
-        
-        /// <summary>
-        /// checkoutPanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel checkoutPanel;
+        protected global::System.Web.UI.WebControls.SqlDataSource MySQL;
     }
 }
