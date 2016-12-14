@@ -12,17 +12,20 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             Prix : <asp:Label ID="lblPrix" runat="server" Text=""></asp:Label>&nbsp;$
         </p>
+        <asp:Panel ID="errorPanel" runat="server" visible="false">
+            <div class="alert alert-danger alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Erreur!</strong> <asp:Label runat="server" ID="error"></asp:Label>
+            </div>
+        </asp:Panel>
         <a runat="server" Class="btn btn-warning" href="~/Partiels/Activite">Retourner aux activités</a>
         <asp:LoginView runat="server" ViewStateMode="Disabled">
-            <AnonymousTemplate>
-                
-            </AnonymousTemplate>
             <%-- Si l'utilisateur est connecté, on affiche le bouton --%>
             <LoggedInTemplate>
                 <% 
                     int idActivite = -1;
                     if (int.TryParse(Request.Params.Get("id"), out idActivite)) {
-                        if (!Context.User.IsInRole("admin") && !hasActivite(idActivite)) { 
+                        if (!Context.User.IsInRole("admin")) { 
                 %>
                             <asp:Button ID="btnInscrire" runat="server" Text="Ajouter au panier" OnClick="btnInscrire_Click" Class="btn btn-primary" />
                 <% 

@@ -10,6 +10,12 @@ namespace projet_gestion_centreSportif.Partiels {
     public partial class Details : System.Web.UI.Page {
 
         protected void Page_Load(object sender, EventArgs e) {
+            var msg = Session["errorMsg"];
+            if (msg != null) {
+                Session["errorMsg"] = null;
+                error.Text = msg.ToString();
+                errorPanel.Visible = true;
+            }
             int idActivite = -1;
             Models.Activite activite = null;
             if (Request.Params.Get("id") == null || Request.Params.Get("id") == "") {
@@ -43,8 +49,12 @@ namespace projet_gestion_centreSportif.Partiels {
             string id = Request.Params.Get("id");
             if (int.TryParse(id, out idActivite)) {
                 addActivite(idActivite);
+                if(Session["errorMsg"] == null) {
+                    Response.Redirect("Activite.aspx");
+                }else {
+                    Server.TransferRequest(Request.Url.AbsolutePath, false);
+                }
             }
-            Response.Redirect("Activite.aspx");
         }
 
         protected bool hasActivite(int idActivite) {
@@ -83,11 +93,9 @@ namespace projet_gestion_centreSportif.Partiels {
             }
             if (activiteInPanier(idActivite)) {
                 Session.Add("errorMsg", "Vous avez déjà l'activité dans votre panier");
-            }
-            else if (activiteInInscription(idActivite)) {
+            }else if (activiteInInscription(idActivite)) {
                 Session.Add("errorMsg", "Vous êtes déjà inscrit à cette activité");
-            }
-            else {
+            }else {
                 panier.Add(new ActiviteService().Read(idActivite));
                 Session.Add("activiteAdded", panier[panier.Count - 1].Nom);
             }

@@ -77,3 +77,13 @@ input[type="select"] {
     background-size: cover;
     height: 400px;
 }
+
+h1, h2 {
+    font-family: 'Roboto Light', sans-serif;
+}
+
+a {
+    font-size: 12px;
+    font-family: 'Roboto Light', sans-serif;
+    text-transform: uppercase;
+}
