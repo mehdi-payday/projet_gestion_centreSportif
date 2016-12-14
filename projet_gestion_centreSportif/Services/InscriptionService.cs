@@ -6,13 +6,13 @@ using MySql.Data.MySqlClient;
 namespace projet_gestion_centreSportif.Services {
     public class InscriptionService {
         Connection connexion;
-        private static readonly string INSERT_INSCRIPTION_QUERY = "INSERT INTO inscription(`IdInscription`, `IdMembre`, `Prix`, `DateInscription`, `DateFin`) VALUES(@idInscription, @idMembre, @prix, @dateInscription, @dateFin)";
-        private static readonly string FIND_BY_ACTIVITE = "SELECT `IdInscription`, `IdMembre`, `Prix`, `DateInscription`, `DateFin` FROM inscription WHERE `IdActivite` = @idActivite";
-        private static readonly string FIND_BY_MEMBRE = "SELECT `IdInscription`, `IdMembre`, `Prix`, `DateInscription`, `DateFin` FROM inscription WHERE `IdMembre` = @idMembre";
-        private static readonly string UPDATE_INSCRIPTION_QUERY = "UPDATE inscription SET  `Prix` = @prix, `DateFin` = @dateFin,  WHERE `IdInscription` = @idIscription";
-        private static readonly string GET_ALL_INSCRIPTION_QUERY = "SELECT `IdInscription`, `IdMembre`, `Prix`, `DateInscription`, `DateFin` FROM inscription";
-        private static readonly string DELETE_INSCRIPTION_QUERY = "DELETE FROM Inscriiption WHERE `idInscription` = @idInscription";
-        private static readonly string READ_INSCRIPTION_QUERY = "SELECT `IdInscription`, `IdMembre`, `Prix`, `DateInscription`, `DateFin` FROM inscription WHERE `IdInscription` = @idInscription";
+        private static readonly string INSERT_INSCRIPTION_QUERY = "INSERT INTO inscription(`idActivite`, `idMembre`, `date_debut`, `date_fin`) VALUES(@idActivite, @idMembre, @dateInscription, @dateFin)";
+        private static readonly string FIND_BY_ACTIVITE = "SELECT `id`, `idActivite`, `idMembre`, `date_debut`, `date_fin` FROM inscription WHERE `idActivite` = @idActivite";
+        private static readonly string FIND_BY_MEMBRE = "SELECT `id`, `idActivite`, `idMembre`, `date_debut`, `date_fin` FROM inscription WHERE `idMembre` = @idMembre";
+        private static readonly string UPDATE_INSCRIPTION_QUERY = "UPDATE inscription SET `date_fin` = @dateFin,  WHERE `id` = @idIscription";
+        private static readonly string GET_ALL_INSCRIPTION_QUERY = "SELECT `id`, `idActivite`, `idMembre`, `date_debut`, `date_fin` FROM inscription";
+        private static readonly string DELETE_INSCRIPTION_QUERY = "DELETE FROM inscription WHERE `id` = @idInscription";
+        private static readonly string READ_INSCRIPTION_QUERY = "SELECT `idInscription`, `idActivite`, `idMembre`, `date_debut`, `date_fin` FROM inscription WHERE `id` = @idInscription";
 
         public InscriptionService() {
             connexion = new Connection();
@@ -28,11 +28,10 @@ namespace projet_gestion_centreSportif.Services {
                     connection.Open();
                     using (MySqlCommand command = new MySqlCommand(InscriptionService.INSERT_INSCRIPTION_QUERY,connection)) {
                         command.Prepare();
-                        command.Parameters.AddWithValue("idInscription",inscriptionModel.IdInscription);
-                        command.Parameters.AddWithValue("idMembre",inscriptionModel.IdMembre);
-                        command.Parameters.AddWithValue("prix",inscriptionModel.Prix);
-                        command.Parameters.AddWithValue("dateInscription",inscriptionModel.DateInscription);
-                        command.Parameters.AddWithValue("dateFin",inscriptionModel.DateFin);
+                        command.Parameters.AddWithValue("idActivite", inscriptionModel.IdActivite);
+                        command.Parameters.AddWithValue("idMembre", inscriptionModel.IdMembre);
+                        command.Parameters.AddWithValue("dateInscription", inscriptionModel.DateInscription);
+                        command.Parameters.AddWithValue("dateFin", inscriptionModel.DateFin);
 
                         command.ExecuteNonQuery();
                     }
@@ -54,15 +53,15 @@ namespace projet_gestion_centreSportif.Services {
                     connection.Open();
                     using (MySqlCommand command = new MySqlCommand(InscriptionService.READ_INSCRIPTION_QUERY,connection)) {
                         command.Prepare();
-                        command.Parameters.AddWithValue("idInscription",idInscription);
+                        command.Parameters.AddWithValue("idInscription", idInscription);
                         using (MySqlDataReader reader = command.ExecuteReader()) {
                             if (reader.Read()) {
                                 inscriptionModel = new Inscription();
-                                inscriptionModel.IdInscription = reader.GetString("idInscription");
+                                inscriptionModel.IdInscription = reader.GetString("id");
+                                inscriptionModel.IdActivite = reader.GetString("idActivite");
                                 inscriptionModel.IdMembre = reader.GetString("idMembre");
-                                inscriptionModel.Prix = reader.GetString("prix");
-                                inscriptionModel.DateInscription = reader.GetDateTime("dateInscription");
-                                inscriptionModel.DateFin = reader.GetDateTime("dateFin");
+                                inscriptionModel.DateInscription = reader.GetDateTime("date_debut");
+                                inscriptionModel.DateFin = reader.GetDateTime("date_fin");
                             }
                         }
                     }
@@ -92,11 +91,11 @@ namespace projet_gestion_centreSportif.Services {
                                 inscriptions = new List<Inscription>();
                                 do {
                                     inscriptionModel = new Inscription();
-                                    inscriptionModel.IdInscription = reader.GetString("idInscription");
+                                    inscriptionModel.IdInscription = reader.GetString("id");
+                                    inscriptionModel.IdActivite = reader.GetString("idActivite");
                                     inscriptionModel.IdMembre = reader.GetString("idMembre");
-                                    inscriptionModel.Prix = reader.GetString("prix");
-                                    inscriptionModel.DateInscription = reader.GetDateTime("dateInscription");
-                                    inscriptionModel.DateFin = reader.GetDateTime("dateFin");
+                                    inscriptionModel.DateInscription = reader.GetDateTime("date_debut");
+                                    inscriptionModel.DateFin = reader.GetDateTime("date_fin");
                                     inscriptions.Add(inscriptionModel);
                                 } while (reader.Read());
                             }
@@ -128,11 +127,11 @@ namespace projet_gestion_centreSportif.Services {
                                 inscriptions = new List<Inscription>();
                                 do {
                                     inscriptionModel = new Inscription();
-                                    inscriptionModel.IdInscription = reader.GetString("idInscription");
+                                    inscriptionModel.IdInscription = reader.GetString("id");
+                                    inscriptionModel.IdActivite = reader.GetString("idActivite");
                                     inscriptionModel.IdMembre = reader.GetString("idMembre");
-                                    inscriptionModel.Prix = reader.GetString("prix");
-                                    inscriptionModel.DateInscription = reader.GetDateTime("dateInscription");
-                                    inscriptionModel.DateFin = reader.GetDateTime("dateFin");
+                                    inscriptionModel.DateInscription = reader.GetDateTime("date_debut");
+                                    inscriptionModel.DateFin = reader.GetDateTime("date_fin");
                                     inscriptions.Add(inscriptionModel);
                                 } while (reader.Read());
                             }
@@ -155,8 +154,7 @@ namespace projet_gestion_centreSportif.Services {
                     connection.Open();
                     using (MySqlCommand command = new MySqlCommand(InscriptionService.UPDATE_INSCRIPTION_QUERY,connection)) {
                         command.Prepare();
-                        command.Parameters.AddWithValue("prix",inscriptionModel.Prix);
-                        command.Parameters.AddWithValue("dateFin",inscriptionModel.DateFin);
+                        command.Parameters.AddWithValue("dateFin", inscriptionModel.DateFin);
                         command.ExecuteNonQuery();
                     }
                 }
@@ -200,12 +198,11 @@ namespace projet_gestion_centreSportif.Services {
                         using (MySqlDataReader reader = command.ExecuteReader()) {
                             while (reader.Read()) {
                                 Inscription inscriptionModel = new Inscription();
-                                command.Parameters.AddWithValue("idInscription",inscriptionModel.IdInscription);
-                                command.Parameters.AddWithValue("idInscription",inscriptionModel.IdInscription);
-                                command.Parameters.AddWithValue("idMembre",inscriptionModel.IdMembre);
-                                command.Parameters.AddWithValue("prix",inscriptionModel.Prix);
-                                command.Parameters.AddWithValue("dateInscription",inscriptionModel.DateInscription);
-                                command.Parameters.AddWithValue("dateFin",inscriptionModel.DateFin);
+                                command.Parameters.AddWithValue("idInscription", inscriptionModel.IdInscription);
+                                command.Parameters.AddWithValue("idActivite", inscriptionModel.IdActivite);
+                                command.Parameters.AddWithValue("idMembre", inscriptionModel.IdMembre);
+                                command.Parameters.AddWithValue("dateInscription", inscriptionModel.DateInscription);
+                                command.Parameters.AddWithValue("dateFin", inscriptionModel.DateFin);
                                 inscriptions.Add(inscriptionModel);
                             }
                         }
@@ -216,7 +213,5 @@ namespace projet_gestion_centreSportif.Services {
             }
             return inscriptions;
         }
-
-
     }
 }

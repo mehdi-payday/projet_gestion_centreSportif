@@ -1,4 +1,6 @@
-﻿using System;
+﻿using projet_gestion_centreSportif.Models;
+using projet_gestion_centreSportif.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -23,9 +25,9 @@ namespace projet_gestion_centreSportif.Partiels {
             LinkButton btn = (LinkButton)sender;
             int idActivite = int.Parse(btn.CommandArgument.ToString());
 
-            List<Models.Activite> panier = (List<Models.Activite>) Session["panier"];
-            foreach (Models.Activite activite in panier){
-                if(activite.id == idActivite) {
+            List<Models.Activite> panier = (List<Models.Activite>)Session["panier"];
+            foreach (Models.Activite activite in panier) {
+                if (activite.id == idActivite) {
                     panier.Remove(activite);
                     break;
                 }
@@ -41,7 +43,25 @@ namespace projet_gestion_centreSportif.Partiels {
         }
 
         protected void toggleCheckout(object sender, EventArgs e) {
-            checkoutPanel.Visible = checkoutPanel.Visible ? false:true;
+            checkoutPanel.Visible = checkoutPanel.Visible ? false : true;
+        }
+
+        protected void payerActivites(object sender, EventArgs e) {
+            InscriptionService inscriptionService = new InscriptionService();
+            string idMembre = (string) HttpContext.Current.Session["userID"];
+            DateTime dateDebut = DateTime.Now;
+            List<Models.Activite> panier = (List<Models.Activite>)Session["panier"];
+            foreach(Models.Activite activite in panier) {
+                DateTime dateFin = dateDebut.AddDays(activite.Duree);
+                Inscription inscriptionModel = new Inscription();
+                inscriptionModel.IdActivite = activite.id.ToString();
+                inscriptionModel.IdMembre = idMembre;
+                inscriptionModel.DateInscription = dateDebut;
+                inscriptionModel.DateFin = dateFin;
+                inscriptionService.Add(inscriptionModel);
+            }
+            Session["panier"] = null;
+            Response.Redirect("Confirmation.aspx");
         }
     }
 }

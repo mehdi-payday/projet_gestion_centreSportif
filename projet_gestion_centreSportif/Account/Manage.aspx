@@ -24,7 +24,7 @@
         </div>
         <asp:Button ID="btnChangeInfo" OnClick="ChangeInfo" runat="server" class="btn btn-default " Text="Changer" />
             </ContentTemplate></asp:UpdatePanel>
-    </div>  
+    </div>
     <br />
     <h4>Changer de mot de passe</h4>
     <hr />

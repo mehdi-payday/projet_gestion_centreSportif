@@ -28,7 +28,7 @@
             <asp:BoundField DataField="Duree" headertext="Duree" DataFormatString="{0} jours"/>
         </Columns>
     </asp:GridView>
-    <asp:Button ID="checkoutBouton" runat="server" class="btn btn-warning" onclick="toggleCheckout" Text="Checkout" />
+    <asp:Button ID="checkoutBouton" runat="server" class="btn btn-warning" onclick="toggleCheckout" Text="Passer a la caisse" />
     <asp:Panel ID="errorPanel" runat="server" visible="false">
         <div class="alert alert-danger alert-dismissible">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -36,6 +36,44 @@
         </div>
     </asp:Panel>
     <asp:Panel ID="checkoutPanel" runat="server" Visible="false">
-        <h2>Checkout</h2>
+        <h2>Informations de paiement</h2>
+        <hr />
+        <div>
+            <asp:UpdatePanel ID="UpdatePanelCheckout" runat="server">
+                <ContentTemplate>
+                    <div class="form-group row">
+                        <asp:Label runat="server" AssociatedControlID="nomField" CssClass="col-sm-3 col-form-label">Identifiant de carte:</asp:Label>
+                        <div class="col-sm-9">
+                            <asp:TextBox ID="nomField" type="text" class="form-control" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <asp:Label runat="server" AssociatedControlID="adresseField" CssClass="col-sm-3 col-form-label">Adresse:</asp:Label>
+                        <div class="col-sm-9">
+                            <asp:TextBox ID="adresseField" type="text" class="form-control" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <asp:Label runat="server" AssociatedControlID="noCarteField" CssClass="col-sm-3 col-form-label">No de carte:</asp:Label>
+                        <div class="col-sm-9">
+                            <asp:TextBox ID="noCarteField" type="text" class="form-control" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <asp:Label runat="server" AssociatedControlID="expirationField" CssClass="col-sm-3 col-form-label">Expiration:</asp:Label>
+                        <div class="col-sm-9">
+                            <asp:TextBox ID="expirationField" type="text" class="form-control" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <asp:Label runat="server" AssociatedControlID="cvcField" CssClass="col-sm-3 col-form-label">CVC:</asp:Label>
+                        <div class="col-sm-9">
+                            <asp:TextBox ID="cvcField" type="text" class="form-control" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <asp:Button ID="btnPayer" OnClick="payerActivites" runat="server" class="btn btn-danger " Text="Payer" />
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>  
     </asp:Panel>
 </asp:Content>
