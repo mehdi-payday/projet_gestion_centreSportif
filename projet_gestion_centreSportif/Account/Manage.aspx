@@ -3,14 +3,6 @@
 <%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-    <script type="text/javascript">
-    $(document).ready(function () {
-        $("#myCarousel").remove();
-    });
-    </script>
-    <%--<div>
-        <img class="banner" src="../Content/Images/banner_red.JPG" />
-    </div>--%>
     <h2><%: Title %>.</h2>
     <div class="form-horizontal">        
         <h4>Changer vos informations</h4>       
@@ -41,12 +33,14 @@
         <div >
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate> 
-                    <div class="form-group">
-                        <asp:Label class="text-success" ID="changePassowrd_message" runat="server" visible="false"></asp:Label>
+                    <asp:Label class="text-success" ID="changePassowrd_message" runat="server" visible="false"></asp:Label>
+                    <div class="form-group">                        
                         <asp:Label runat="server" AssociatedControlID="currentPassword" CssClass="col-sm-3 col-form-label">Mot de passe acctuel :</asp:Label>
                         <div class="col-sm-9">
                             <asp:TextBox runat="server" ID="currentPassword" type="password" CssClass="form-control"/>
                             <asp:Label class="text-danger" ID="current_password_error" runat="server" visible="false"></asp:Label>
+                             <asp:RequiredFieldValidator runat="server" ControlToValidate="currentPassword"
+                            CssClass="text-danger" ErrorMessage="Ce champ est obligatoire." validationgroup="passwords"/>
                         </div>
                     </div>
                     <br />
