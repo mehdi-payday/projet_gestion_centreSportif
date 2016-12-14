@@ -8,9 +8,9 @@
         $("#myCarousel").remove();
     });
     </script>
-    <div>
+    <%--<div>
         <img class="banner" src="../Content/Images/banner_bleu.JPG" />
-    </div>
+    </div>--%>
     <h2><%: Title %></h2>
 
     <div class="row">

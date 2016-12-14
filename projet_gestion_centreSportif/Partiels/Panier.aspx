@@ -5,9 +5,9 @@
         $("#myCarousel").remove();
     });
     </script>
-    <div>
+    <%--<div>
         <img class="banner" src="../Content/Images/banner_black.JPG" />
-    </div>
+    </div>--%>
     <h2>Panier</h2>
     <asp:Panel ID="panierVide" runat="server" visible="false">
         <div class="alert alert-danger">

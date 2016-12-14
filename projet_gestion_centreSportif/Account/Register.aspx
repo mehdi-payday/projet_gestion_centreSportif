@@ -6,9 +6,9 @@
         $("#myCarousel").remove();
     });
     </script>
-    <div>
+    <%--<div>
         <img class="banner" src="../Content/Images/banner_green.JPG" />
-    </div>
+    </div>--%>
     <h2><%: Title %></h2>
     <p class="text-danger">
         <asp:Literal runat="server" ID="ErrorMessage" />

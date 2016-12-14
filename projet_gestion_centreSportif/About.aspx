@@ -6,9 +6,9 @@
         $("#myCarousel").remove();
     });
     </script>
-    <div>
+    <%--<div>
         <img class="banner" src="../Content/Images/banner_red.JPG" />
-    </div>
+    </div>--%>
     <h2>À propos de nous</h2>
     <div class="container">
         <div class="col-md-6" style="text-align: justify;">

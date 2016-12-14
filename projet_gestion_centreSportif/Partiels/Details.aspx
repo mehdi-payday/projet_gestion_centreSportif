@@ -6,9 +6,9 @@
         $("#myCarousel").remove();
     });
     </script>
-    <div>
+    <%--<div>
         <img class="banner" src="../Content/Images/banner_black.JPG" />
-    </div>
+    </div>--%>
     <div class="container">
         <h2>Détails de l'activité <asp:Label ID="lblNom" runat="server" Text=""></asp:Label></h2>
         <%-- <img alt="" src="<%= activite.Image %>" /> --%>

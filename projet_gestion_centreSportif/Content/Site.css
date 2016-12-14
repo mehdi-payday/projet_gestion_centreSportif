@@ -72,10 +72,10 @@ input[type="select"] {
     max-width: 100%!important;
 }
 
-.banner {
-    background: url(sports-banner.jpg) no-repeat center top;
+.bannerTemp {
+    background: url(sports-banner2.jpg) no-repeat center top;
     background-size: cover;
-    height: 400px;
+    height: 425px;
 }
 
 h1, h2 {
@@ -87,13 +87,23 @@ a {
     font-family: 'Roboto Light', sans-serif;
     text-transform: uppercase;
 }
+
 .banner {
-    background: url(sports-banner.jpg) no-repeat center top;
-    background-size: cover;
-    height: 400px;
-    margin-left:-120px;^M
-    height:auto;^M
-    width: 122%;^M
-    z-index: 0;^M
-    overflow:hidden;^M
+    margin-left: -120px;
+    height: auto;
+    width: 122%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.master-page-title {
+    text-overflow: ellipsis;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    padding-left: 50px;
+    padding-top: 302px;
+    text-transform: uppercase;
+    font-size: 65px;
+    color: white;
+    margin-top: 0px!important;
+    margin: 0 auto;
 }

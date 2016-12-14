@@ -5,11 +5,11 @@
         $("#myCarousel").remove();
     });
     </script>
-    <div>
+    <%--<div>
         <img class="banner" src="../Content/Images/banner_black.JPG" />
-    </div>
+    </div>--%>
     <div class="container">
-        <h2>Activite</h2>
+        <h2>Activités</h2>
         <asp:Panel ID="errorPanel" runat="server" visible="false">
             <div class="alert alert-danger alert-dismissible">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>

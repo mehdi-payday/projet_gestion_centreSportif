@@ -5,9 +5,9 @@
         $("#myCarousel").remove();
     });
     </script>
-    <div>
+    <%--<div>
         <img class="banner" src="../Content/Images/banner_black.JPG" />
-    </div>
+    </div>--%>
     <div class="container">
         <h2>Confirmation de transaction</h2>
         <p>Votre transaction a été effectué avec succès!</p>

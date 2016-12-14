@@ -46,7 +46,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/"><span class="glyphicon glyphicon-globe" id="logIcon"></span>  Centre Sportif</a>
+                    <a class="navbar-brand" runat="server" href="~/"><span class="glyphicon glyphicon-globe" id="logIcon"></span></a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
@@ -91,8 +91,11 @@
                 </div>
             </div>
         </div>
+        <div class="bannerTemp">
+            <h1 class="master-page-title">Centre Sportif claude robillard</h1>
+        </div>
         <div class="max-width">
-            <div id="myCarousel" class="row carousel slide" data-ride="carousel">
+            <%--<div id="myCarousel" class="row carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
                     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -133,7 +136,7 @@
                     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
-            </div>
+            </div>--%>
 
             <div class="container body-content">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">

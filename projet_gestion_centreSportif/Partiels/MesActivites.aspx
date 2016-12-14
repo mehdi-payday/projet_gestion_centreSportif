@@ -5,11 +5,11 @@
         $("#myCarousel").remove();
     });
     </script>
-    <div>
+    <%--<div>
         <img class="banner" src="../Content/Images/banner_black.JPG" />
-    </div>
+    </div>--%>
     <div class="container">
-        <h2>Mes Activites</h2>
+        <h2>Mes Activités</h2>
         <asp:GridView runat="server" ID="activites" class="table table-striped" AllowPaging="True" AllowSorting="True" DataSourceID="MySQL" autogeneratecolumns="false">
             <Columns>
                 <asp:TemplateField ShowHeader="False">

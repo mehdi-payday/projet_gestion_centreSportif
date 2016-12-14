@@ -9,7 +9,7 @@
     <h2>Nous joindre</h2>
     <div class="container">
         <div class="max-width">
-            <img runat="server" src="~/Content/Images/About/front_1.jpg" alt="Centre sportif" style="width:1000px; height:auto"> 
+            <img runat="server" src="~/Content/Images/About/front_1.jpg" alt="Centre sportif"> 
         </div>
         <address>
            <h3>Coordonnées</h3>
