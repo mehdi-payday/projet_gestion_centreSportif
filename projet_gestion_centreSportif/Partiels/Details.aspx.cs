@@ -48,7 +48,11 @@ namespace projet_gestion_centreSportif.Partiels {
         }
 
         protected bool hasActivite(int idActivite) {
-            List<Models.Activite> panier = (List<Models.Activite>)HttpContext.Current.Session["panier"];
+            return activiteInPanier(idActivite) || activiteInInscription(idActivite);
+        }
+
+        protected bool activiteInPanier(int idActivite) {
+            List<Models.Activite> panier = (List<Models.Activite>) HttpContext.Current.Session["panier"];
             if (panier != null) {
                 foreach (Models.Activite activite in panier) {
                     if (activite.id == idActivite) {
@@ -56,7 +60,11 @@ namespace projet_gestion_centreSportif.Partiels {
                     }
                 }
             }
-            String idMembre = (String)HttpContext.Current.Session["userID"];
+            return false;
+        }
+
+        protected bool activiteInInscription(int idActivite) {
+            String idMembre = (String) HttpContext.Current.Session["userID"];
             List<Models.Inscription> activiteInscrit = new InscriptionService().FindByMembre(int.Parse(idMembre));
             if (activiteInscrit != null) {
                 foreach (Models.Inscription inscription in activiteInscrit) {
@@ -73,39 +81,17 @@ namespace projet_gestion_centreSportif.Partiels {
             if (panier == null) {
                 panier = new List<Models.Activite>();
             }
-            bool dejaAjoute = false;
-            foreach (Models.Activite activite in panier) {
-                if (activite.id == idActivite) {
-                    dejaAjoute = true;
-                    break;
-                }
-            }
-            if (!dejaAjoute) {
-                String idMembre = (String) HttpContext.Current.Session["userID"];
-                List<Models.Inscription> activiteInscrit = new InscriptionService().FindByMembre(int.Parse(idMembre));
-                if (activiteInscrit != null) {
-                    foreach (Models.Inscription inscription in activiteInscrit) {
-                        if (int.Parse(inscription.IdActivite) == idActivite) {
-                            dejaAjoute = true;
-                            break;
-                        }
-                    }
-                }
-                if (!dejaAjoute) {
-                    panier.Add(new ActiviteService().Read(idActivite));
-                    Session.Add("activiteAdded", panier[panier.Count - 1].Nom);
-                }
-                else {
-                    //ScriptManager.RegisterStartupScript(this, this.GetType(), "errMessage1", "alert(\"Vous êtes déjà inscrit à cette activité\");", true);
-                    Session.Add("errorMsg", "Vous êtes déjà inscrit à cette activité");
-                }
-            }
-            else {
-                //ScriptManager.RegisterStartupScript(this, this.GetType(), "errMessage2", "alert(\"Vous avez déjà l'activité dans votre panier\");", true);
+            if (activiteInPanier(idActivite)) {
                 Session.Add("errorMsg", "Vous avez déjà l'activité dans votre panier");
             }
+            else if (activiteInInscription(idActivite)) {
+                Session.Add("errorMsg", "Vous êtes déjà inscrit à cette activité");
+            }
+            else {
+                panier.Add(new ActiviteService().Read(idActivite));
+                Session.Add("activiteAdded", panier[panier.Count - 1].Nom);
+            }
             HttpContext.Current.Session["panier"] = panier;
-            //Server.TransferRequest(Request.Url.AbsolutePath, false);
         }
     }
 }
