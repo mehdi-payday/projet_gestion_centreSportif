@@ -7,6 +7,12 @@ using projet_gestion_centreSportif.Services;
 namespace projet_gestion_centreSportif.Account
 {
     public partial class Register : Page {
+
+        protected void Page_Load(object sender, EventArgs e) {
+            if (User.Identity.IsAuthenticated) {
+                Response.Redirect("~/Default");
+            }
+        }
         protected void CreateUser_Click(object sender, EventArgs e) {
             MembreService membreService = new MembreService();
             Membre membre = new Membre();
