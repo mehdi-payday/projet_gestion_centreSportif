@@ -3,6 +3,9 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Nous joindre</h2>
     <div class="container">
+        <div class="max-width">
+            <img runat="server" src="~/Content/Images/About/front_1.jpg" alt="Centre sportif" style="width:1000px; height:auto"> 
+        </div>
         <address>
            <h3>Coordonnées</h3>
            Complexe sportif <br />
