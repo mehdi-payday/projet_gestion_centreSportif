@@ -227,11 +227,11 @@ insert into activite (`nom`, `description`, `prix`, `duree`) values ('fusce cong
 
 INSERT INTO `membre` (`prenom`, `nom`, `email`, `password`, `isAdmin`) VALUES
 ('admin', 'admin', 'admin@site', 'D033E22AE348AEB5660FC2140AEC35850C4DA997', 1);
-INSERT INTO `membre` (`prenom`, `nom`, `email`, `password`, `balance`, `adresse`, `cart_credit`, `cart_cvc`) VALUES
-('Alexandre', 'Barone', 'alexandre@site', '7110EDA4D09E062AA5E4A390B0A572AC0D2C0220', 1500, '1234 Rue La jeunesse H4N 5K2', 5229962649720450, 934),
-('Dominic', 'Leroux', 'dominic@site', '7110EDA4D09E062AA5E4A390B0A572AC0D2C0220', 1500, '1234 Rue La jeunesse H4N 5K2', 5229962649720450, 934),
-('Mathieu', 'Lafond', 'mathieu@site', '7110EDA4D09E062AA5E4A390B0A572AC0D2C0220', 1500, '1234 Rue La jeunesse H4N 5K2', 5229962649720450, 934),
-('Mehdi', 'Hamidi', 'mehdi@site', '7110EDA4D09E062AA5E4A390B0A572AC0D2C0220', 1500, '1234 Rue La jeunesse H4N 5K2', 5258375045475922, 563);
+INSERT INTO `membre` (`prenom`, `nom`, `email`, `password`, `adresse`, `cart_credit`, `cart_cvc`) VALUES
+('Alexandre', 'Barone', 'alexandre@site', '7110EDA4D09E062AA5E4A390B0A572AC0D2C0220', '1234 Rue La jeunesse H4N 5K2', 5229962649720450, 934),
+('Dominic', 'Leroux', 'dominic@site', '7110EDA4D09E062AA5E4A390B0A572AC0D2C0220', '1234 Rue La jeunesse H4N 5K2', 5229962649720450, 934),
+('Mathieu', 'Lafond', 'mathieu@site', '7110EDA4D09E062AA5E4A390B0A572AC0D2C0220', '1234 Rue La jeunesse H4N 5K2', 5229962649720450, 934),
+('Mehdi', 'Hamidi', 'mehdi@site', '7110EDA4D09E062AA5E4A390B0A572AC0D2C0220', '1234 Rue La jeunesse H4N 5K2', 5258375045475922, 563);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
