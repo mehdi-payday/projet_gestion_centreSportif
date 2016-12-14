@@ -50,22 +50,22 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Home</a></li>                  
-                        <li><a runat="server" href="~/Partiels/Activite">Activite</a></li>
+                        <li><a runat="server" href="~/">Accueil</a></li>                  
+                        <li><a runat="server" href="~/Partiels/Activite">Activités</a></li>
                         <li><a runat="server" href="~/About">À propos</a></li>
-                        <li><a runat="server" href="~/Contact">Contact</a></li>
+                        <li><a runat="server" href="~/Contact">Contactez-nous</a></li>
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Register">Register</a></li>
-                                <li><a runat="server" href="~/Account/Login">Log in</a></li>
+                                <li><a runat="server" href="~/Account/Register">S'enregistrer</a></li>
+                                <li><a runat="server" href="~/Account/Login">Connection</a></li>
                             </ul>
                         </AnonymousTemplate>
                         <LoggedInTemplate>
                             <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a runat="server" href="~/Partiels/Panier" title="Accede au panier"><span class="glyphicon glyphicon-shopping-cart"></span> <span class="badge"><%= ViewState["panierCount"] != null ? ViewState["panierCount"]:0 %></span></a>
+                                <a runat="server" href="~/Partiels/Panier" title="Accede au panier"><span class="glyphicon glyphicon-shopping-cart" style="font-size: 18px;"></span> <span class="badge"><%= ViewState["panierCount"] != null ? ViewState["panierCount"]:0 %></span></a>
                             </li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Bonjour, <%: Context.User.Identity.GetUserName()  %> <% if (Context.User.IsInRole("admin")) { %><span class="glyphicon glyphicon-user"></span><% } %> <span class="caret"></span></a>
@@ -73,8 +73,10 @@
                                     <li><a  runat="server" href="~/Account/Manage" title="Manage your account">Mon compte</a></li>
                                     <% if (Context.User.IsInRole("admin")) { %>
                                         <li role="separator" class="divider"></li>
-                                        <li><a runat="server" href="~/Admin/activite/Activite">Gestion Activites</a></li>
-                                        <li><a runat="server" href="~/Admin/membre/Membre">Gestion Membre</a></li>
+                                        <li><strong>Gestion</strong></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a runat="server" href="~/Admin/activite/Activite">Activites</a></li>
+                                        <li><a runat="server" href="~/Admin/membre/Membre">Membre</a></li>
                                     <% } else { %>
                                         <li><a  runat="server" href="~/Partiels/MesActivites">Mes Activités</a></li>
                                     <% } %>
