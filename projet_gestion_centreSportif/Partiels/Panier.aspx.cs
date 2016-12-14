@@ -9,12 +9,13 @@ namespace projet_gestion_centreSportif.Partiels {
     public partial class Panier : System.Web.UI.Page {
 
         protected void Page_Load(object sender, EventArgs e) {
-            List<Models.Activite> list = (List<Models.Activite>) Session["panier"];
-            if (list != null) {
+            List<Models.Activite> list = (List<Models.Activite>)Session["panier"];
+            if (list != null && list.Count != 0) {
                 activites.DataSource = list;
                 activites.DataBind();
             } else {
-
+                checkoutBouton.Visible = false;
+                panierVide.Visible = true;
             }
         }
 

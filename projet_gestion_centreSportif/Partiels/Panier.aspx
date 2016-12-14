@@ -1,6 +1,11 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Panier.aspx.cs" Inherits="projet_gestion_centreSportif.Partiels.Panier" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Panier</h2>
+    <asp:Panel ID="panierVide" runat="server" visible="false">
+        <div class="alert alert-danger">
+            <strong>Dommage!</strong> Votre panier est vide
+        </div>
+    </asp:Panel>
     <asp:GridView runat="server" ID="activites" class="table table-striped" AllowPaging="True" AllowSorting="True" autogeneratecolumns="false">
         <Columns>
             <asp:TemplateField ShowHeader="False">
@@ -23,7 +28,7 @@
             <asp:BoundField DataField="Duree" headertext="Duree" DataFormatString="{0} jours"/>
         </Columns>
     </asp:GridView>
-    <asp:Button runat="server" class="btn btn-warning" onclick="toggleCheckout" Text="Checkout" />
+    <asp:Button ID="checkoutBouton" runat="server" class="btn btn-warning" onclick="toggleCheckout" Text="Checkout" />
     <asp:Panel ID="errorPanel" runat="server" visible="false">
         <div class="alert alert-danger alert-dismissible">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
