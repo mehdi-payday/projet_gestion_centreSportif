@@ -78,7 +78,6 @@ CREATE TABLE `membre` (
     `email` varchar(50) UNIQUE DEFAULT NULL,
     `password` varchar(255) DEFAULT NULL,
     `isAdmin` INT(1) NOT NULL DEFAULT 0,
-    `balance` double NOT NULL DEFAULT 500,
     `adresse` varchar(50) NOT NULL DEFAULT '',
     `cart_credit` BIGINT(16) NOT NULL DEFAULT 0,
     `cart_cvc` int(3) NOT NULL DEFAULT 0

@@ -48,8 +48,11 @@ namespace projet_gestion_centreSportif.Partiels {
 
         protected void payerActivites(object sender, EventArgs e) {
             InscriptionService inscriptionService = new InscriptionService();
+            MembreService membreService = new MembreService();
             string idMembre = (string) HttpContext.Current.Session["userID"];
+            Membre membre = membreService.Read(idMembre);
             DateTime dateDebut = DateTime.Now;
+
             List<Models.Activite> panier = (List<Models.Activite>)Session["panier"];
             foreach(Models.Activite activite in panier) {
                 DateTime dateFin = dateDebut.AddDays(activite.Duree);
@@ -60,6 +63,11 @@ namespace projet_gestion_centreSportif.Partiels {
                 inscriptionModel.DateFin = dateFin;
                 inscriptionService.Add(inscriptionModel);
             }
+            membre.Adresse = adresseField.Text;
+            membre.Cart_Credit = noCarteField.Text;
+            membre.Cart_CVC = cvcField.Text;
+            membreService.Update(membre);
+
             Session["panier"] = null;
             Response.Redirect("Confirmation.aspx");
         }

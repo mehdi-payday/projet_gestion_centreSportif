@@ -2,12 +2,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
         $(document).ready(function () {
-        $("#myCarousel").remove();
-    });
+            
+        });
     </script>
-    <%--<div>
-        <img class="banner" src="../Content/Images/banner_black.JPG" />
-    </div>--%>
     <h2>Panier</h2>
     <asp:Panel ID="panierVide" runat="server" visible="false">
         <div class="alert alert-danger">
@@ -53,30 +50,42 @@
                         <asp:Label runat="server" AssociatedControlID="nomField" CssClass="col-sm-3 col-form-label">Identifiant de carte:</asp:Label>
                         <div class="col-sm-9">
                             <asp:TextBox ID="nomField" type="text" class="form-control" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator CssClass="text-danger" ControlToValidate="nomField" runat="server" ErrorMessage="Ce champ ne peut être vide." Display="Dynamic"> </asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="form-group row">
                         <asp:Label runat="server" AssociatedControlID="adresseField" CssClass="col-sm-3 col-form-label">Adresse:</asp:Label>
                         <div class="col-sm-9">
                             <asp:TextBox ID="adresseField" type="text" class="form-control" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator  CssClass="text-danger" ControlToValidate="adresseField" runat="server" ErrorMessage="Ce champ ne peut être vide." Display="Dynamic"> </asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="form-group row">
                         <asp:Label runat="server" AssociatedControlID="noCarteField" CssClass="col-sm-3 col-form-label">No de carte:</asp:Label>
                         <div class="col-sm-9">
-                            <asp:TextBox ID="noCarteField" type="text" class="form-control" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="noCarteField" type="number" class="form-control" runat="server"></asp:TextBox>
+                            <asp:RegularExpressionValidator 
+                               Display = "Dynamic" CssClass="text-danger" ControlToValidate = "noCarteField" ID="RegularExpressionValidator1" ValidationExpression = "^[\s\S]{14,19}$" runat="server" ErrorMessage="Votre numbero de carte de crédit n'est pas valide">
+                            </asp:RegularExpressionValidator>
+                            <asp:RequiredFieldValidator CssClass="text-danger" ControlToValidate="noCarteField" runat="server" ErrorMessage="Ce champ ne peut être vide." Display="Dynamic"> </asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="form-group row">
                         <asp:Label runat="server" AssociatedControlID="expirationField" CssClass="col-sm-3 col-form-label">Expiration:</asp:Label>
                         <div class="col-sm-9">
-                            <asp:TextBox ID="expirationField" type="text" class="form-control" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="expirationField" type="" class="form-control datepicker" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator CssClass="text-danger" ControlToValidate="expirationField" runat="server" ErrorMessage="Ce champ ne peut être vide." Display="Dynamic"> </asp:RequiredFieldValidator>
+
                         </div>
                     </div>
                     <div class="form-group row">
                         <asp:Label runat="server" AssociatedControlID="cvcField" CssClass="col-sm-3 col-form-label">CVC:</asp:Label>
                         <div class="col-sm-9">
-                            <asp:TextBox ID="cvcField" type="text" class="form-control" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="cvcField" type="number" class="form-control" runat="server"></asp:TextBox>
+                            <asp:RegularExpressionValidator 
+                                Display = "Dynamic" CssClass="text-danger"  ControlToValidate = "cvcField" ID="RegularExpressionValidator3" ValidationExpression = "^[\s\S]{3,3}$" runat="server" ErrorMessage="Le CVC est composé de 3 chiffres">
+                            </asp:RegularExpressionValidator>
+                            <asp:RequiredFieldValidator CssClass="text-danger" ControlToValidate="cvcField" runat="server" ErrorMessage="Ce champ ne peut être vide." Display="Dynamic"> </asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <asp:Button ID="btnPayer" OnClick="payerActivites" runat="server" class="btn btn-danger " Text="Payer" />
