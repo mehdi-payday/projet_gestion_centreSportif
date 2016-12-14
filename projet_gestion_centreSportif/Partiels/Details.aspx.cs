@@ -9,28 +9,39 @@ using System.Web.UI.WebControls;
 namespace projet_gestion_centreSportif.Partiels {
     public partial class Details : System.Web.UI.Page {
 
-        private string id;
-
         protected void Page_Load(object sender, EventArgs e) {
-            id = Request.Params.Get("id");
-            int idActivite;
-            if(int.TryParse(id,out idActivite)) {
-                Models.Activite activite = new ActiviteService().Read(idActivite);
-                if (activite != null) {
-                    if (activite.Image != null && activite.Image.Contains("~/Content/Images/")) {
-                        imageActivite.ImageUrl = activite.Image;
-                    }
-                    else {
-                        imageActivite.Visible = false;
+            int idActivite = -1;
+            Models.Activite activite = null;
+            if (Request.Params.Get("id") == null || Request.Params.Get("id") == "") {
+                Response.Redirect("Activite.aspx");
+            }
+            else {
+                if (!int.TryParse(Request.Params.Get("id"), out idActivite)) {
+                    Response.Redirect("Activite.aspx");
+                }
+                else {
+                    activite = new ActiviteService().Read(idActivite);
+                    if (activite == null) {
+                        Response.Redirect("Activite.aspx");
                     }
                 }
             }
+            if (activite.Image != null && activite.Image.Contains("~/Content/Images/")) {
+                imageActivite.ImageUrl = activite.Image;
+            }
+            else {
+                imageActivite.Visible = false;
+            }
+            lblNom.Text = activite.Nom;
+            lblDescription.Text = activite.Description;
+            lblDuree.Text = activite.Duree.ToString();
+            lblPrix.Text = activite.Prix.ToString();
         }
 
         protected void btnInscrire_Click(object sender, EventArgs e) {
             int idActivite=-1;
+            string id = Request.Params.Get("id");
             if (int.TryParse(id, out idActivite)) {
-                //Response.Redirect("Activite.aspx?inscriptId=" + idActivite);
                 addActivite(idActivite);
             }
             Response.Redirect("Activite.aspx");
