@@ -53,7 +53,7 @@ namespace projet_gestion_centreSportif.Account
                 HttpContext.Current.Session["userID"] = membre.IdMembre;
                 HttpContext.Current.Response.Redirect("~/default.aspx");
             } else {
-                FailureText.Text = "Wrong email/password, please try again!";
+                FailureText.Text = "Mauvaise combinaison  de Couriel/Mot de passe, veillez réessayer.";
                 FailureText.Visible = true;
             }
         }

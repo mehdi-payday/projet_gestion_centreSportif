@@ -11,24 +11,6 @@
             <li data-target="#myCarousel" data-slide-to="3"></li>
             <li data-target="#myCarousel" data-slide-to="4"></li>
         </ol>
-        <%--<!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox">
-            <div class="item active">
-                <img runat="server" src="~/Content/Images/About/front_1.jpg" alt="Centre sportif"> 
-            </div>
-            <div class="item">
-                <img runat="server" src="~/Content/Images/About/badminton_court.jpg" alt="Chania">
-            </div>
-            <div class="item">
-                <img runat="server" src="~/Content/Images/About/basketBall_court.jpg" alt="Flower">
-            </div>
-            <div class="item">
-                <img runat="server" src="~/Content/Images/About/soccer_field.jpg" alt="Flower">
-            </div>
-            <div class="item">
-                <img runat="server" src="~/Content/Images/About/swimming_pool.jpg" alt="Flower">
-            </div>
-        </div>--%>
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
