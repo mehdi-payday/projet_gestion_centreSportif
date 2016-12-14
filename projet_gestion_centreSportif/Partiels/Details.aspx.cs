@@ -17,21 +17,17 @@ namespace projet_gestion_centreSportif.Partiels {
                 errorPanel.Visible = true;
             }
             int idActivite = -1;
-            Models.Activite activite = null;
             if (Request.Params.Get("id") == null || Request.Params.Get("id") == "") {
                 Response.Redirect("Activite.aspx");
             }
-            else {
-                if (!int.TryParse(Request.Params.Get("id"), out idActivite)) {
-                    Response.Redirect("Activite.aspx");
-                }
-                else {
-                    activite = new ActiviteService().Read(idActivite);
-                    if (activite == null) {
-                        Response.Redirect("Activite.aspx");
-                    }
-                }
+            if (!int.TryParse(Request.Params.Get("id"), out idActivite)) {
+                Response.Redirect("Activite.aspx");
             }
+            Models.Activite activite = new ActiviteService().Read(idActivite);
+            if (activite == null) {
+                Response.Redirect("Activite.aspx");
+            }
+
             if (activite.Image != null && activite.Image.Contains("~/Content/Images/")) {
                 imageActivite.ImageUrl = activite.Image;
             }
