@@ -3,8 +3,15 @@
 <%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+    <script type="text/javascript">
+        $(document).ready(function () {
+        $("#myCarousel").remove();
+    });
+    </script>
+    <div>
+        <img class="banner" src="../Content/Images/banner_bleu.JPG" />
+    </div>
     <h2><%: Title %>.</h2>
-
     <div class="row">
         <div class="col-md-8">
             <section id="loginForm">

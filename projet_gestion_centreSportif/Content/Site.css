@@ -87,3 +87,13 @@ a {
     font-family: 'Roboto Light', sans-serif;
     text-transform: uppercase;
 }
+.banner {
+    background: url(sports-banner.jpg) no-repeat center top;
+    background-size: cover;
+    height: 400px;
+    margin-left:-120px;^M
+    height:auto;^M
+    width: 122%;^M
+    z-index: 0;^M
+    overflow:hidden;^M
+}

@@ -1,5 +1,13 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MesActivites.aspx.cs" Inherits="projet_gestion_centreSportif.Partiels.MesActivites" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <script type="text/javascript">
+        $(document).ready(function () {
+        $("#myCarousel").remove();
+    });
+    </script>
+    <div>
+        <img class="banner" src="../Content/Images/banner_black.JPG" />
+    </div>
     <div class="container">
         <h2>Mes Activites</h2>
         <asp:GridView runat="server" ID="activites" class="table table-striped" AllowPaging="True" AllowSorting="True" DataSourceID="MySQL" autogeneratecolumns="false">

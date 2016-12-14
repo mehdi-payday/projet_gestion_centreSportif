@@ -1,5 +1,13 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Panier.aspx.cs" Inherits="projet_gestion_centreSportif.Partiels.Panier" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <script type="text/javascript">
+        $(document).ready(function () {
+        $("#myCarousel").remove();
+    });
+    </script>
+    <div>
+        <img class="banner" src="../Content/Images/banner_black.JPG" />
+    </div>
     <h2>Panier</h2>
     <asp:Panel ID="panierVide" runat="server" visible="false">
         <div class="alert alert-danger">

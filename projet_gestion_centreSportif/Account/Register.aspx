@@ -1,6 +1,14 @@
 ﻿<%@ Page Title="Register" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="projet_gestion_centreSportif.Account.Register" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+    <script type="text/javascript">
+        $(document).ready(function () {
+        $("#myCarousel").remove();
+    });
+    </script>
+    <div>
+        <img class="banner" src="../Content/Images/banner_green.JPG" />
+    </div>
     <h2><%: Title %>.</h2>
     <p class="text-danger">
         <asp:Literal runat="server" ID="ErrorMessage" />
