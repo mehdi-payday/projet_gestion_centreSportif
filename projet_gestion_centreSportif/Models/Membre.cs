@@ -8,8 +8,8 @@
         public string Email { get; set; }
         public string Password { get; set; }
         public string Adresse { get; set; }
-        public long  Cart_Credit{ get; set; }
-        public int  Cart_CVC{ get; set; }
+        public string  Cart_Credit{ get; set; }
+        public string  Cart_CVC{ get; set; }
 
 }
 }

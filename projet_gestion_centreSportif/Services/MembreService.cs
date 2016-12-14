@@ -87,8 +87,8 @@ namespace projet_gestion_centreSportif.Services {
                             unMembre.Password = reader.GetString("password");
                             unMembre.IsAdmin = reader.GetInt16("isAdmin");
                             unMembre.Adresse = reader.GetString("adresse");
-                            unMembre.Cart_Credit = reader.GetInt64("cart_credit");
-                            unMembre.Cart_CVC = reader.GetInt16("cart_cvc");
+                            unMembre.Cart_Credit = reader.GetString("cart_credit");
+                            unMembre.Cart_CVC = reader.GetString("cart_cvc");
                         }
                     }
                 }
@@ -148,8 +148,8 @@ namespace projet_gestion_centreSportif.Services {
                             membre.Password = reader.GetString("password");
                             membre.IsAdmin = reader.GetInt16("isAdmin");
                             membre.Adresse = reader.GetString("adresse");
-                            membre.Cart_Credit = reader.GetInt64("cart_credit");
-                            membre.Cart_CVC = reader.GetInt16("cart_cvc");
+                            membre.Cart_Credit = reader.GetString("cart_credit");
+                            membre.Cart_CVC = reader.GetString("cart_cvc");
 
                         }
                     }
@@ -169,6 +169,7 @@ namespace projet_gestion_centreSportif.Services {
                 connexion.Open();
                 using (MySqlCommand command = new MySqlCommand(MembreService.UPDATE_MEMBRE_QUERY, connexion.getConnection())) {
                     command.Prepare();
+                    command.Parameters.AddWithValue("id", membre.IdMembre);
                     command.Parameters.AddWithValue("prenom", membre.Prenom);
                     command.Parameters.AddWithValue("nom", membre.Nom);
                     command.Parameters.AddWithValue("email", membre.Email);
@@ -229,8 +230,8 @@ namespace projet_gestion_centreSportif.Services {
                         membre.Email = reader.GetString("Email");
                         membre.IsAdmin = reader.GetInt16("isAdmin");
                         membre.Adresse = reader.GetString("adresse");
-                        membre.Cart_Credit = reader.GetInt64("cart_credit");
-                        membre.Cart_CVC = reader.GetInt16("cart_cvc");
+                        membre.Cart_Credit = reader.GetString("cart_credit");
+                        membre.Cart_CVC = reader.GetString("cart_cvc");
                         membres.Add(membre);
                     }
                 }
